@@ -1,11 +1,21 @@
-# My Personal Project
+# Gym Journal
 
-## A subtitle
+## A workout recording app to help you exercise intelligently.
 
-A *bulleted* list:
-- item 1
-- item 2
-- item 3
+This application is designed to make tracking your workouts more efficient.  
 
-An example of text with **bold** and *italic* fonts.  Note that the IntelliJ markdown previewer doesn't seem to render 
-the bold and italic fonts correctly but they will appear correctly on GitHub.
+Its features will include:
+- Recording your workouts statistics
+- Calculating your "one rep max" for exercises you have performed  
+- Saving custom  exercise routines 
+ 
+Recording your workouts is important for every level of athlete. It helps 
+set and achieve goals, and it is useful to consult your exercise history
+when designing new workout routines. When I started working out, I
+used a pen and paper, or the *Notes* app to record the weight, reps, and sets 
+for every exercise I performed. Unfortunately, this method proved to be time-
+consuming and inefficient. With the ***Gym Journal*** application, users will
+be able to record their exercises, save routines that they often repeat, and
+view a calculated estimate of their one rep max for each exercise that they have done.
+  
+
