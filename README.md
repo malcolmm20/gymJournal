@@ -17,5 +17,11 @@ for every exercise I performed. Unfortunately, this method proved to be time-
 consuming and inefficient. With the ***Gym Journal*** application, users will
 be able to record their exercises, save routines that they often repeat, and
 view a calculated estimate of their one rep max for each exercise that they have done.
-  
 
+
+## User Stories
+- As a user, I want to be able to add an exercise to my ongoing workout.
+- As a user, I want to be able to enter the amount of reps, sets and weight
+ for each exercise.
+- As a user, I want to be able to save routines that I repeat.  
+- As a user, I want to be able to view my personal best for various exercises.
