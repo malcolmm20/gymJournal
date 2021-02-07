@@ -4,25 +4,25 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-//journal that records workouts, sets reps weights for exercises
+//journal that records workouts, exercises
 public class GymJournal {
 
-    private ArrayList<Workout> workoutHistory;
-    private HashMap<String, Exercise> exerciseHashMap;
+    private ArrayList<OpenWorkout> openWorkoutHistory;
+    private HashMap<String, WorkoutExercise> exerciseHashMap;
     private HashMap<String, Routine> routineHashMap;
 
     // MODIFIES: this
     // EFFECTS: initializes hashmaps and arraylist
     public GymJournal() {
-        workoutHistory = new ArrayList<>();
+        openWorkoutHistory = new ArrayList<>();
         exerciseHashMap = new HashMap<>();
         routineHashMap = new HashMap<>();
     }
 
     // MODIFIES: this
     // EFFECTS: adds workout to workout history
-    public void addWorkout(Workout workout) {
-        this.workoutHistory.add(workout);
+    public void addWorkout(OpenWorkout openWorkout) {
+        this.openWorkoutHistory.add(openWorkout);
     }
 
 

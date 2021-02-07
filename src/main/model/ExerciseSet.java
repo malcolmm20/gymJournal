@@ -1,5 +1,6 @@
 package model;
 
+// each instance is a set. records reps and weight, for a set.
 public class ExerciseSet {
     private int reps;
     private int weight;

@@ -1,7 +1,11 @@
 package model;
 
+import ui.GymJournalApp;
+
+import java.lang.management.GarbageCollectorMXBean;
+
 // stores name of exercise and amount of sets for each exercise in a routine
-public class RoutineExercise {
+public class RoutineExercise implements Exercise {
     private final String name;
     private final int sets;
 

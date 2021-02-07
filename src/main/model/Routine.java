@@ -1,9 +1,11 @@
 package model;
 
+import ui.GymJournalApp;
+
 import java.util.ArrayList;
 
 //routines that users repeat
-public class Routine {
+public class Routine implements Workout {
     private final String name;
     private ArrayList<RoutineExercise> exercises;
 
@@ -21,6 +23,10 @@ public class Routine {
     // EFFECTS: returns routine name
     public String getName() {
         return this.name;
+    }
+
+    public void callExerciseDetails(GymJournalApp gymJournalApp, String name, int num) {
+        gymJournalApp.routineExerciseDetails(this, name, num);
     }
 
     // EFFECTS: returns list of exercises in routine
