@@ -24,4 +24,4 @@ view a calculated estimate of their one rep max for each exercise that they have
 - As a user, I want to be able to enter the amount of reps, sets and weight
  for each exercise.
 - As a user, I want to be able to save routines that I repeat.  
-- As a user, I want to be able to view my personal best for various exercises.
+- As a user, I want to be able to follow routines I have saved for my workouts.
