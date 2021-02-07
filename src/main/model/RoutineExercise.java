@@ -2,8 +2,8 @@ package model;
 
 // stores name of exercise and amount of sets for each exercise in a routine
 public class RoutineExercise {
-    private String name;
-    private int sets;
+    private final String name;
+    private final int sets;
 
     // REQUIRES: sets to be a positive integer, name cannot be the empty string
     // EFFECTS: sets name, sets equal to parameter values

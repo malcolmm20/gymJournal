@@ -14,7 +14,7 @@ public class GymJournal {
     // MODIFIES: this
     // EFFECTS: initializes hashmaps and arraylist
     public GymJournal() {
-        workoutHistory = new ArrayList<Workout>();
+        workoutHistory = new ArrayList<>();
         exerciseHashMap = new HashMap<>();
         routineHashMap = new HashMap<>();
     }

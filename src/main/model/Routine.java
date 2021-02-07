@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 //routines that users repeat
 public class Routine {
-    private String name;
+    private final String name;
     private ArrayList<RoutineExercise> exercises;
 
     public Routine(String name) {
         this.name = name;
-        exercises = new ArrayList<RoutineExercise>();
+        exercises = new ArrayList<>();
     }
 
     // MODIFIES: this
