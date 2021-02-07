@@ -19,15 +19,13 @@ public class Exercise {
         this.sets.add(set);
     }
 
-    public String getName() {
-        return this.name;
+    @Override
+    public String toString() {
+        String exerciseSet = "";
+        for (ExerciseSet set : sets) {
+            exerciseSet = exerciseSet.concat(set.toString() + "\n");
+        }
+        return (this.name + "\n" + exerciseSet);
     }
 
-    public int getPersonalBest() {
-        return this.personalBest;
-    }
-
-    public int getOneRepMax() {
-        return this.oneRepMax;
-    }
 }

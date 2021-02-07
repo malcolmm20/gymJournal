@@ -11,18 +11,28 @@ public class GymJournal {
     private HashMap<String, Exercise> exerciseHashMap;
     private HashMap<String, Routine> routineHashMap;
 
+    // MODIFIES: this
+    // EFFECTS: initializes hashmaps and arraylist
     public GymJournal() {
         workoutHistory = new ArrayList<Workout>();
         exerciseHashMap = new HashMap<>();
         routineHashMap = new HashMap<>();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds workout to workout history
     public void addWorkout(Workout workout) {
         this.workoutHistory.add(workout);
-        updateExerciseHashMap();
     }
 
-    private void updateExerciseHashMap() {
+
+    // MODIFIES: this
+    // EFFECTS: adds routine to routineHashMap
+    public void addRoutine(Routine routine) {
+        this.routineHashMap.put(routine.getName(), routine);
     }
 
+    public Routine findRoutine(String string) {
+        return routineHashMap.get(string);
+    }
 }
