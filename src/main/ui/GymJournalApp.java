@@ -1,6 +1,5 @@
 package ui;
 
-
 import model.*;
 
 import java.util.Scanner;
@@ -45,7 +44,7 @@ public class GymJournalApp {
                 startWorkout();
                 break;
             case "h":
-
+                workoutHistory();
                 break;
             case "r":
                 createRoutine();
@@ -58,6 +57,19 @@ public class GymJournalApp {
                 break;
             default:
                 System.out.println("Selection not valid. Please choose a valid option.");
+        }
+    }
+
+    // EFFECTS: prints past workouts
+    private void workoutHistory() {
+        System.out.println("How many past workouts would you like to view?");
+        int num = input.nextInt();
+        input.nextLine();
+        System.out.println(gymJournal.workoutString(num));
+        System.out.println("Press 'c' to continue");
+        String command = input.nextLine();
+        if (!command.equals("c")) {
+            workoutHistory();
         }
     }
 
@@ -99,7 +111,13 @@ public class GymJournalApp {
 
     // EFFECTS: if user enters valid routine, starts the routine workout
     private void findWorkoutRoutine() {
-        System.out.println("Which routine will you be doing today?");
+        System.out.println("Which routine will you be doing today?\n "
+                + "Enter the name of the routine as it appears below.");
+        if (gymJournal.routineString().equals("")) {
+            System.out.println("No routines have been created. Enter 'q' to return to the menu.");
+        } else {
+            System.out.print(gymJournal.routineString());
+        }
         String search = input.nextLine();
         Routine routine = gymJournal.findRoutine(search);
         if (!(routine == null)) {
@@ -131,10 +149,12 @@ public class GymJournalApp {
                 System.out.println("How many reps completed for set " + (i + 1)
                         + " of " + routineExercise.getName() + "?");
                 int reps = input.nextInt();
+                input.nextLine();
                 System.out.println("What weight did you use for set "
                         + (i + 1) + " of " + routineExercise.getName() + "?");
                 int weight = input.nextInt();
-                ExerciseSet set = new ExerciseSet(reps, weight);
+                input.nextLine();
+                WorkoutExerciseSet set = new WorkoutExerciseSet(reps, weight);
                 workoutExercise.addSet(set);
             }
             openWorkout.addExercise(workoutExercise);
@@ -150,6 +170,8 @@ public class GymJournalApp {
         gymJournal.addWorkout(openWorkout);
     }
 
+    // REQUIRES: workout to not be null
+    // EFFECTS: records exercise names and number of sets
     private void recordExercises(Workout workout) {
         boolean keepGoing = true;
         int count = 1;
@@ -160,7 +182,7 @@ public class GymJournalApp {
             System.out.println("How many sets?");
             int num = input.nextInt();
             input.nextLine();
-            workout.callExerciseDetails(this, name, num);
+            workout.exerciseDetails(this, name, num);
             System.out.println("Add another exercise?\n Enter 'y' for yes\n Enter any key for no");
             String command = input.nextLine();
             if (command.equals("y")) {
@@ -172,22 +194,20 @@ public class GymJournalApp {
     }
 
     // MODIFIES: workout
-    // EFFECTS: records reps and weight in set objects, adds set objects to exercise
+    // EFFECTS: records reps and weight in set objects, adds set objects to exercise, adds exercise to workout
     public void workoutExerciseDetails(OpenWorkout workout, String name, int num) {
         WorkoutExercise exercise = new WorkoutExercise(name);
 
         for (int i = 0; i < num; i++) {
             System.out.println("How many reps for set " + (i + 1) + "?");
             int reps = input.nextInt();
+            input.nextLine();
             System.out.println("How much weight for set " + (i + 1) + "?");
             int weight = input.nextInt();
-            ExerciseSet set = new ExerciseSet(reps, weight);
+            input.nextLine();
+            WorkoutExerciseSet set = new WorkoutExerciseSet(reps, weight);
             exercise.addSet(set);
         }
-    }
-
-    public void routineExerciseDetails(Routine workout, String name, int num) {
-        RoutineExercise exercise = new RoutineExercise(name, num);
         workout.addExercise(exercise);
     }
 }

@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OpenWorkoutExerciseSetTest {
-    private ExerciseSet setA;
-    private ExerciseSet setB;
+public class OpenWorkoutWorkoutExerciseSetTest {
+    private WorkoutExerciseSet setA;
+    private WorkoutExerciseSet setB;
 
     @BeforeEach
     void setUp() {
-        setA = new ExerciseSet(8, 150);
-        setB = new ExerciseSet(12, 0);
+        setA = new WorkoutExerciseSet(8, 150);
+        setB = new WorkoutExerciseSet(12, 0);
     }
 
     @Test

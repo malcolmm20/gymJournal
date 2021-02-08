@@ -25,12 +25,25 @@ public class Routine implements Workout {
         return this.name;
     }
 
-    public void callExerciseDetails(GymJournalApp gymJournalApp, String name, int num) {
-        gymJournalApp.routineExerciseDetails(this, name, num);
+    // EFFECTS: calls exerciseDetails in gymJournalApp
+    public void exerciseDetails(GymJournalApp gymJournalApp, String name, int num) {
+        RoutineExercise exercise = new RoutineExercise(name, num);
+        this.addExercise(exercise);
+
     }
 
     // EFFECTS: returns list of exercises in routine
     public ArrayList<RoutineExercise> getExercises() {
         return exercises;
+    }
+
+    // EFFECTS: creates a reader friendly string of routine
+    @Override
+    public String toString() {
+        String result = "";
+        for (RoutineExercise exercise : exercises) {
+            result = result.concat(exercise.toString() + "\n");
+        }
+        return (this.name.concat("\n" + result));
     }
 }
