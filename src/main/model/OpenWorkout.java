@@ -5,6 +5,7 @@ import ui.GymJournalApp;
 
 import java.util.ArrayList;
 import java.time.*;
+import java.util.HashMap;
 
 // open workout for user to record stats
 public class OpenWorkout implements Workout {
@@ -34,9 +35,18 @@ public class OpenWorkout implements Workout {
         return (this.date + " workout.\n" + exerciseString);
     }
 
-    // EFFECTS: calls exercise details in gymjournalapp
+    // EFFECTS: calls exercise details in gymJournalApp
     @Override
     public void exerciseDetails(GymJournalApp gymJournalApp, String name, int num) {
         gymJournalApp.workoutExerciseDetails(this, name, num);
+    }
+
+    // EFFECTS: returns each exercise in workout's set with heaviest weight
+    public HashMap<String, WorkoutExerciseSet> heaviestSets() {
+        HashMap<String, WorkoutExerciseSet> heaviestSets = new HashMap<String, WorkoutExerciseSet>();
+        for (WorkoutExercise exercise : workoutExercises) {
+            heaviestSets.put(exercise.getName(), exercise.heaviestSet());
+        }
+        return heaviestSets;
     }
 }

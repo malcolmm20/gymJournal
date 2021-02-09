@@ -13,8 +13,29 @@ public class WorkoutExercise {
         this.sets = new ArrayList<WorkoutExerciseSet>();
     }
 
+    // EFFECTS: returns exercise name
+    public String getName() {
+        return name;
+    }
+
+    // EFFECTS: returns set done with heaviest weight.
+    // if there are two with same weight, returns the set with most reps
+    public WorkoutExerciseSet heaviestSet() {
+        WorkoutExerciseSet heaviestSet = new WorkoutExerciseSet(0, 0);
+        for (WorkoutExerciseSet set : sets) {
+            if (set.getWeight() > heaviestSet.getWeight()) {
+                heaviestSet = set;
+            } else if (set.getWeight() == heaviestSet.getWeight()) {
+                if (set.getReps() > heaviestSet.getReps()) {
+                    heaviestSet = set;
+                }
+            }
+        }
+        return heaviestSet;
+    }
+
     // MODIFIES: this
-    // EFFECTS: adds exercise to workoutexercise arraylist
+    // EFFECTS: adds exercise to workoutExercise arraylist
     public void addSet(WorkoutExerciseSet set) {
         this.sets.add(set);
     }

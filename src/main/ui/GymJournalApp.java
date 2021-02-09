@@ -50,13 +50,31 @@ public class GymJournalApp {
                 createRoutine();
                 break;
             case "b":
-
+                displayPersonalBests();
                 break;
             case "o":
-
+                displayOneRepMaxes();
                 break;
             default:
                 System.out.println("Selection not valid. Please choose a valid option.");
+        }
+    }
+
+    private void displayOneRepMaxes() {
+        System.out.println(gymJournal.displayOneRepMaxes());
+        System.out.println("Press 'r' to return to the menu");
+        String command = input.nextLine().toLowerCase();
+        if (!command.equals("r")) {
+            workoutHistory();
+        }
+    }
+
+    private void displayPersonalBests() {
+        System.out.println(gymJournal.displayPersonalBests());
+        System.out.println("Press 'r' to return to the menu");
+        String command = input.nextLine().toLowerCase();
+        if (!command.equals("r")) {
+            workoutHistory();
         }
     }
 
@@ -66,9 +84,9 @@ public class GymJournalApp {
         int num = input.nextInt();
         input.nextLine();
         System.out.println(gymJournal.workoutString(num));
-        System.out.println("Press 'c' to continue");
-        String command = input.nextLine();
-        if (!command.equals("c")) {
+        System.out.println("Press 'r' to return to the menu");
+        String command = input.nextLine().toLowerCase();
+        if (!command.equals("r")) {
             workoutHistory();
         }
     }
@@ -97,7 +115,7 @@ public class GymJournalApp {
     private void startWorkout() {
         System.out.println("would you like to start an empty workout, or begin a workout routine?\n"
                 + "start an empty workout - enter 'e'\nstart a workout routine - enter 'r'");
-        String command = input.nextLine();
+        String command = input.nextLine().toLowerCase();
 
         if (command.equals("e")) {
             startEmptyWorkout();
@@ -118,7 +136,7 @@ public class GymJournalApp {
         } else {
             System.out.print(gymJournal.routineString());
         }
-        String search = input.nextLine();
+        String search = input.nextLine().toLowerCase();
         Routine routine = gymJournal.findRoutine(search);
         if (!(routine == null)) {
             startWorkoutRoutine(routine);
@@ -132,7 +150,7 @@ public class GymJournalApp {
     // EFFECTS: create routine, add to gym journal
     private void createRoutine() {
         System.out.println("What would you like to name your routine?");
-        String name = input.nextLine();
+        String name = input.nextLine().toLowerCase();
         Routine routine = new Routine(name);
         recordExercises(routine);
         gymJournal.addRoutine(routine);
@@ -178,13 +196,13 @@ public class GymJournalApp {
 
         while (keepGoing) {
             System.out.println("Enter Exercise " + count + " name:");
-            String name = input.nextLine();
+            String name = input.nextLine().toLowerCase();
             System.out.println("How many sets?");
             int num = input.nextInt();
             input.nextLine();
-            workout.exerciseDetails(this, name, num);
+            workout.exerciseDetails(this, name.toLowerCase(), num);
             System.out.println("Add another exercise?\n Enter 'y' for yes\n Enter any key for no");
-            String command = input.nextLine();
+            String command = input.nextLine().toLowerCase();
             if (command.equals("y")) {
                 count++;
             } else {
