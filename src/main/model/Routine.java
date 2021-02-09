@@ -1,17 +1,34 @@
 package model;
 
-import ui.GymJournalApp;
-
 import java.util.ArrayList;
+import java.util.Objects;
 
 //routines that users repeat
-public class Routine implements Workout {
+public class Routine {
     private final String name;
-    private ArrayList<RoutineExercise> exercises;
+    private final ArrayList<RoutineExercise> exercises;
 
     public Routine(String name) {
         this.name = name;
         exercises = new ArrayList<>();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Routine routine = (Routine) o;
+        return Objects.equals(name, routine.name)
+                && Objects.equals(exercises, routine.exercises);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, exercises);
     }
 
     // MODIFIES: this
@@ -23,13 +40,6 @@ public class Routine implements Workout {
     // EFFECTS: returns routine name
     public String getName() {
         return this.name;
-    }
-
-    // EFFECTS: calls exerciseDetails in gymJournalApp
-    public void exerciseDetails(GymJournalApp gymJournalApp, String name, int num) {
-        RoutineExercise exercise = new RoutineExercise(name, num);
-        this.addExercise(exercise);
-
     }
 
     // EFFECTS: returns list of exercises in routine

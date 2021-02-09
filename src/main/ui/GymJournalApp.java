@@ -190,7 +190,7 @@ public class GymJournalApp {
 
     // REQUIRES: workout to not be null
     // EFFECTS: records exercise names and number of sets
-    private void recordExercises(Workout workout) {
+    private void recordExercises(OpenWorkout workout) {
         boolean keepGoing = true;
         int count = 1;
 
@@ -200,15 +200,48 @@ public class GymJournalApp {
             System.out.println("How many sets?");
             int num = input.nextInt();
             input.nextLine();
-            workout.exerciseDetails(this, name.toLowerCase(), num);
-            System.out.println("Add another exercise?\n Enter 'y' for yes\n Enter any key for no");
-            String command = input.nextLine().toLowerCase();
+            workoutExerciseDetails(workout, name.toLowerCase(), num);
+            String command = checkAnotherExercise();
             if (command.equals("y")) {
                 count++;
             } else {
                 keepGoing = false;
             }
         }
+    }
+
+    // REQUIRES: workout to not be null
+    // EFFECTS: records exercise names and number of sets
+    private void recordExercises(Routine routine) {
+        boolean keepGoing = true;
+        int count = 1;
+
+        while (keepGoing) {
+            System.out.println("Enter Exercise " + count + " name:");
+            String name = input.nextLine().toLowerCase();
+            System.out.println("How many sets?");
+            int num = input.nextInt();
+            input.nextLine();
+            exerciseDetails(routine, name.toLowerCase(), num);
+            String command = checkAnotherExercise();
+            if (command.equals("y")) {
+                count++;
+            } else {
+                keepGoing = false;
+            }
+        }
+    }
+
+    // EFFECTS: calls exerciseDetails in gymJournalApp
+    public void exerciseDetails(Routine routine, String name, int num) {
+        RoutineExercise exercise = new RoutineExercise(name, num);
+        routine.addExercise(exercise);
+    }
+
+    // EFFECTS: asks if user wants to add another exercise
+    private String checkAnotherExercise() {
+        System.out.println("Add another exercise?\n Enter 'y' for yes\n Enter any key for no");
+        return input.nextLine().toLowerCase();
     }
 
     // MODIFIES: workout

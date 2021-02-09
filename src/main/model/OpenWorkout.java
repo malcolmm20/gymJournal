@@ -1,21 +1,37 @@
 package model;
 
-
-import ui.GymJournalApp;
-
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.time.*;
 import java.util.HashMap;
+import java.util.Objects;
 
 // open workout for user to record stats
-public class OpenWorkout implements Workout {
-    private ArrayList<WorkoutExercise> workoutExercises;
-    private LocalDate date;
+public class OpenWorkout {
+    private final ArrayList<WorkoutExercise> workoutExercises;
+    private final LocalDate date;
 
     // EFFECTS: initializes arraylist, records date of workout
     public OpenWorkout() {
-        workoutExercises = new ArrayList<WorkoutExercise>();
+        workoutExercises = new ArrayList<>();
         this.date = LocalDate.now();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        OpenWorkout that = (OpenWorkout) o;
+        return Objects.equals(workoutExercises, that.workoutExercises)
+                && Objects.equals(date, that.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(workoutExercises, date);
     }
 
     // MODIFIES: this
@@ -35,15 +51,9 @@ public class OpenWorkout implements Workout {
         return (this.date + " workout.\n" + exerciseString);
     }
 
-    // EFFECTS: calls exercise details in gymJournalApp
-    @Override
-    public void exerciseDetails(GymJournalApp gymJournalApp, String name, int num) {
-        gymJournalApp.workoutExerciseDetails(this, name, num);
-    }
-
     // EFFECTS: returns each exercise in workout's set with heaviest weight
     public HashMap<String, WorkoutExerciseSet> heaviestSets() {
-        HashMap<String, WorkoutExerciseSet> heaviestSets = new HashMap<String, WorkoutExerciseSet>();
+        HashMap<String, WorkoutExerciseSet> heaviestSets = new HashMap<>();
         for (WorkoutExercise exercise : workoutExercises) {
             heaviestSets.put(exercise.getName(), exercise.heaviestSet());
         }

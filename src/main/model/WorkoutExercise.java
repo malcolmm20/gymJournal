@@ -1,16 +1,35 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 // individual strength exercises, tracks name sets, reps, weight
 public class WorkoutExercise {
     String name;
-    private ArrayList<WorkoutExerciseSet> sets;
+    private final ArrayList<WorkoutExerciseSet> sets;
 
     // EFFECTS: sets name to parameter, initializes array
     public WorkoutExercise(String name) {
         this.name = name;
-        this.sets = new ArrayList<WorkoutExerciseSet>();
+        this.sets = new ArrayList<>();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        WorkoutExercise that = (WorkoutExercise) o;
+        return Objects.equals(name, that.name)
+                && Objects.equals(sets, that.sets);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, sets);
     }
 
     // EFFECTS: returns exercise name

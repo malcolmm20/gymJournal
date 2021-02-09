@@ -2,12 +2,12 @@ package model;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
+import java.util.Objects;
 
 // each instance is a set. records reps and weight, for a set.
 public class WorkoutExerciseSet {
-    private int reps;
-    private int weight;
+    private final int reps;
+    private final int weight;
 
     // REQUIRES: reps are positive, weight is non-negative
     // EFFECTS: sets reps and weight equal to parameter values
@@ -17,10 +17,28 @@ public class WorkoutExerciseSet {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        WorkoutExerciseSet that = (WorkoutExerciseSet) o;
+        return reps == that.reps
+                && weight == that.weight;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(reps, weight);
+    }
+
     // EFFECTS: creates a reader friendly string of set
     @Override
     public String toString() {
-        return (Integer.toString(this.reps) + " reps, " + Integer.toString(this.weight) + " lbs");
+        return (this.reps + " reps, " + this.weight + " lbs");
     }
 
     // EFFECTS: returns reps

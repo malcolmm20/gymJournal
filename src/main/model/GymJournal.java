@@ -1,17 +1,17 @@
 package model;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 //journal that records workouts, exercises
 public class GymJournal {
 
-    private ArrayList<OpenWorkout> workoutHistory;
-    private HashMap<String, WorkoutExerciseSet> personalBests;
-    private HashMap<String, Double> oneRepMaxes;
-    private HashMap<String, Routine> routineHashMap;
+    private final ArrayList<OpenWorkout> workoutHistory;
+    private final HashMap<String, WorkoutExerciseSet> personalBests;
+    private final HashMap<String, Double> oneRepMaxes;
+    private final HashMap<String, Routine> routineHashMap;
 
     // MODIFIES: this
     // EFFECTS: initializes hashmaps and arraylist
@@ -20,6 +20,26 @@ public class GymJournal {
         personalBests = new HashMap<>();
         oneRepMaxes = new HashMap<>();
         routineHashMap = new HashMap<>();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        GymJournal that = (GymJournal) o;
+        return Objects.equals(workoutHistory, that.workoutHistory)
+                && Objects.equals(personalBests, that.personalBests)
+                && Objects.equals(oneRepMaxes, that.oneRepMaxes)
+                && Objects.equals(routineHashMap, that.routineHashMap);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(workoutHistory, personalBests, oneRepMaxes, routineHashMap);
     }
 
     // MODIFIES: this
@@ -115,7 +135,7 @@ public class GymJournal {
     public String displayOneRepMaxes() {
         String result = "";
         String title = "ONE REP MAXES\n-------------\n";
-        for (Map.Entry oneRepMax : oneRepMaxes.entrySet()) {
+        for (HashMap.Entry<String, Double> oneRepMax : oneRepMaxes.entrySet()) {
             result = result.concat(oneRepMax.getKey() + ": " + oneRepMax.getValue() + " lbs\n");
         }
         return title.concat(result);
