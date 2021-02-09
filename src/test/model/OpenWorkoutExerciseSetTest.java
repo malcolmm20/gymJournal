@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class OpenWorkoutWorkoutExerciseSetTest {
+public class OpenWorkoutExerciseSetTest {
     private WorkoutExerciseSet setA;
     private WorkoutExerciseSet setB;
 
