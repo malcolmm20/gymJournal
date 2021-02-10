@@ -172,7 +172,7 @@ public class GymJournalApp {
                         + (i + 1) + " of " + routineExercise.getName() + "?");
                 int weight = input.nextInt();
                 input.nextLine();
-                WorkoutExerciseSet set = new WorkoutExerciseSet(reps, weight);
+                WorkoutSet set = new WorkoutSet(reps, weight);
                 workoutExercise.addSet(set);
             }
             openWorkout.addExercise(workoutExercise);
@@ -256,7 +256,7 @@ public class GymJournalApp {
             System.out.println("How much weight for set " + (i + 1) + "?");
             int weight = input.nextInt();
             input.nextLine();
-            WorkoutExerciseSet set = new WorkoutExerciseSet(reps, weight);
+            WorkoutSet set = new WorkoutSet(reps, weight);
             exercise.addSet(set);
         }
         workout.addExercise(exercise);

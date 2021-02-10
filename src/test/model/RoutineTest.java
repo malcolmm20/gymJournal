@@ -15,8 +15,6 @@ public class RoutineTest {
     private RoutineExercise exerciseB;
     private RoutineExercise exerciseC;
     private RoutineExercise exerciseD;
-    private RoutineExercise exerciseE;
-    private RoutineExercise exerciseF;
     private Routine routineA;
     private Routine routineB;
     private Routine routineC;
@@ -45,9 +43,10 @@ public class RoutineTest {
 
     @Test
     void testEquals() {
-        assertTrue(routineA.equals(routineA));
-        assertTrue(routineA.equals(routineB) && routineB.equals(routineA));
-        assertFalse(routineA.equals(routineD));
+        assertEquals(routineA, routineA);
+        assertEquals(routineA, routineB);
+        assertEquals(routineB, routineA);
+        assertNotEquals(routineA, routineD);
         assertFalse(routineA.equals(routineC) || routineC.equals(routineA));
 
         routineB.addExercise(exerciseA);
@@ -56,8 +55,8 @@ public class RoutineTest {
 
     @Test
     void testHashCode() {
-        assertTrue(routineA.hashCode() == routineB.hashCode());
-        assertFalse(routineA.hashCode() == routineC.hashCode());
+        assertEquals(routineA.hashCode(), routineB.hashCode());
+        assertNotEquals(routineA.hashCode(), routineC.hashCode());
     }
 
     @Test

@@ -5,13 +5,13 @@ import java.math.RoundingMode;
 import java.util.Objects;
 
 // each instance is a set. records reps and weight, for a set.
-public class WorkoutExerciseSet {
+public class WorkoutSet {
     private final int reps;
     private final int weight;
 
     // REQUIRES: reps are positive, weight is non-negative
     // EFFECTS: sets reps and weight equal to parameter values
-    public WorkoutExerciseSet(int reps, int weight) {
+    public WorkoutSet(int reps, int weight) {
         this.reps = reps;
         this.weight = weight;
 
@@ -25,7 +25,7 @@ public class WorkoutExerciseSet {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        WorkoutExerciseSet that = (WorkoutExerciseSet) o;
+        WorkoutSet that = (WorkoutSet) o;
         return reps == that.reps
                 && weight == that.weight;
     }
@@ -56,10 +56,10 @@ public class WorkoutExerciseSet {
         double oneRepMax;
         double reps = this.reps;
         double weight = this.weight;
-        if (this.reps > 1) {
-            oneRepMax = weight * (1 + (reps / 30.0));
-        } else {
+        if (this.reps == 1) {
             oneRepMax = weight;
+        } else {
+            oneRepMax = weight * (1 + (reps / 30.0));
         }
         BigDecimal bd = new BigDecimal(oneRepMax).setScale(2, RoundingMode.HALF_UP);
         return bd.doubleValue();

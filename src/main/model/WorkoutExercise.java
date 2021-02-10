@@ -6,7 +6,7 @@ import java.util.Objects;
 // individual strength exercises, tracks name sets, reps, weight
 public class WorkoutExercise {
     String name;
-    private final ArrayList<WorkoutExerciseSet> sets;
+    private final ArrayList<WorkoutSet> sets;
 
     // EFFECTS: sets name to parameter, initializes array
     public WorkoutExercise(String name) {
@@ -39,9 +39,9 @@ public class WorkoutExercise {
 
     // EFFECTS: returns set done with heaviest weight.
     // if there are two with same weight, returns the set with most reps
-    public WorkoutExerciseSet heaviestSet() {
-        WorkoutExerciseSet heaviestSet = new WorkoutExerciseSet(0, 0);
-        for (WorkoutExerciseSet set : sets) {
+    public WorkoutSet heaviestSet() {
+        WorkoutSet heaviestSet = new WorkoutSet(0, 0);
+        for (WorkoutSet set : sets) {
             if (set.getWeight() > heaviestSet.getWeight()) {
                 heaviestSet = set;
             } else if (set.getWeight() == heaviestSet.getWeight()) {
@@ -55,7 +55,7 @@ public class WorkoutExercise {
 
     // MODIFIES: this
     // EFFECTS: adds exercise to workoutExercise arraylist
-    public void addSet(WorkoutExerciseSet set) {
+    public void addSet(WorkoutSet set) {
         this.sets.add(set);
     }
 
@@ -63,7 +63,7 @@ public class WorkoutExercise {
     @Override
     public String toString() {
         String exerciseSet = "";
-        for (WorkoutExerciseSet set : sets) {
+        for (WorkoutSet set : sets) {
             exerciseSet = exerciseSet.concat(set.toString() + "\n");
         }
         return (this.name + "\n" + exerciseSet);

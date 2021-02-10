@@ -16,6 +16,11 @@ public class OpenWorkout {
         this.date = LocalDate.now();
     }
 
+    // EFFECTS: returns date
+    public LocalDate getDate() {
+        return date;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -52,8 +57,8 @@ public class OpenWorkout {
     }
 
     // EFFECTS: returns each exercise in workout's set with heaviest weight
-    public HashMap<String, WorkoutExerciseSet> heaviestSets() {
-        HashMap<String, WorkoutExerciseSet> heaviestSets = new HashMap<>();
+    public HashMap<String, WorkoutSet> heaviestSets() {
+        HashMap<String, WorkoutSet> heaviestSets = new HashMap<>();
         for (WorkoutExercise exercise : workoutExercises) {
             heaviestSets.put(exercise.getName(), exercise.heaviestSet());
         }

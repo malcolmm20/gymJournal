@@ -9,7 +9,7 @@ import java.util.Objects;
 public class GymJournal {
 
     private final ArrayList<OpenWorkout> workoutHistory;
-    private final HashMap<String, WorkoutExerciseSet> personalBests;
+    private final HashMap<String, WorkoutSet> personalBests;
     private final HashMap<String, Double> oneRepMaxes;
     private final HashMap<String, Routine> routineHashMap;
 
@@ -37,6 +37,14 @@ public class GymJournal {
                 && Objects.equals(routineHashMap, that.routineHashMap);
     }
 
+    public HashMap<String, WorkoutSet> getPersonalBests() {
+        return personalBests;
+    }
+
+    public HashMap<String, Double> getOneRepMaxes() {
+        return oneRepMaxes;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(workoutHistory, personalBests, oneRepMaxes, routineHashMap);
@@ -53,7 +61,7 @@ public class GymJournal {
     // MODIFIES:
     // EFFECTS:
     private void updateExercises(OpenWorkout workout) {
-        HashMap<String, WorkoutExerciseSet> heaviestSets = workout.heaviestSets();
+        HashMap<String, WorkoutSet> heaviestSets = workout.heaviestSets();
         updatePersonalBests(heaviestSets);
         updateOneRepMaxes(heaviestSets);
     }
@@ -62,9 +70,9 @@ public class GymJournal {
     // MODIFIES: this
     // EFFECTS: updates personal bests, if any weights in heaviest set are more than
     // corresponding weight in personal best or if weight is the same, but with more reps
-    private void updatePersonalBests(HashMap<String, WorkoutExerciseSet> heaviestSets) {
-        for (Map.Entry<String, WorkoutExerciseSet> set : heaviestSets.entrySet()) {
-            WorkoutExerciseSet currentPB = personalBests.get(set.getKey());
+    private void updatePersonalBests(HashMap<String, WorkoutSet> heaviestSets) {
+        for (Map.Entry<String, WorkoutSet> set : heaviestSets.entrySet()) {
+            WorkoutSet currentPB = personalBests.get(set.getKey());
             if (currentPB != null) {
                 if (set.getValue().getWeight() > currentPB.getWeight()) {
                     personalBests.put(set.getKey(), set.getValue());
@@ -82,8 +90,8 @@ public class GymJournal {
     // REQUIRES: heaviestSet to not be null
     // MODIFIES: this
     // EFFECTS: updates oneRepMaxes if a set from heaviest sets has a heavier 1 rep max
-    private void updateOneRepMaxes(HashMap<String, WorkoutExerciseSet> heaviestSets) {
-        for (Map.Entry<String, WorkoutExerciseSet> set : heaviestSets.entrySet()) {
+    private void updateOneRepMaxes(HashMap<String, WorkoutSet> heaviestSets) {
+        for (Map.Entry<String, WorkoutSet> set : heaviestSets.entrySet()) {
             double possibleRM = set.getValue().calculateOneRepMax();
             if (oneRepMaxes.get(set.getKey()) != null) {
                 double currentRM = oneRepMaxes.get(set.getKey());
@@ -132,6 +140,8 @@ public class GymJournal {
         return result;
     }
 
+
+
     public String displayOneRepMaxes() {
         String result = "";
         String title = "ONE REP MAXES\n-------------\n";
@@ -144,7 +154,7 @@ public class GymJournal {
     public String displayPersonalBests() {
         String result = "";
         String title = "PERSONAL BESTS\n--------------\n";
-        for (HashMap.Entry<String, WorkoutExerciseSet> personalBest : personalBests.entrySet()) {
+        for (HashMap.Entry<String, WorkoutSet> personalBest : personalBests.entrySet()) {
             result = result.concat(personalBest.getKey() + ": "
                     + personalBest.getValue().getReps() + " reps,"
                     + personalBest.getValue().getWeight() + " lbs\n");
