@@ -178,7 +178,7 @@ class GymJournalTest {
     }
 
     @Test
-    public void testUpdatePersonalBestsEqual() {
+    public void testUpdatePersonalBestsEqualMoreSets() {
         assertEquals("PERSONAL BESTS\n" +
                         "--------------\n" +
                         "bench press: 1 reps, 200 lbs\n" +
@@ -198,7 +198,7 @@ class GymJournalTest {
     }
 
     @Test
-    public void testUpdatePersonalBestsLess() {
+    public void testUpdatePersonalBestsEqual() {
         assertEquals("PERSONAL BESTS\n" +
                         "--------------\n" +
                         "bench press: 1 reps, 200 lbs\n" +
@@ -207,6 +207,26 @@ class GymJournalTest {
         OpenWorkout workoutD = new OpenWorkout();
         WorkoutExercise workoutExerciseE = new WorkoutExercise("bench press");
         WorkoutSet setF = new WorkoutSet(1, 200);
+        workoutExerciseE.addSet(setF);
+        workoutD.addExercise(workoutExerciseE);
+        journalA.addWorkout(workoutD);
+        assertEquals("PERSONAL BESTS\n" +
+                        "--------------\n" +
+                        "bench press: 1 reps, 200 lbs\n" +
+                        "barbell back squat: 8 reps, 150 lbs\n"
+                , journalA.displayPersonalBests());
+    }
+
+    @Test
+    public void testUpdatePersonalBestsLess() {
+        assertEquals("PERSONAL BESTS\n" +
+                        "--------------\n" +
+                        "bench press: 1 reps, 200 lbs\n" +
+                        "barbell back squat: 8 reps, 150 lbs\n"
+                , journalA.displayPersonalBests());
+        OpenWorkout workoutD = new OpenWorkout();
+        WorkoutExercise workoutExerciseE = new WorkoutExercise("bench press");
+        WorkoutSet setF = new WorkoutSet(1, 190);
         workoutExerciseE.addSet(setF);
         workoutD.addExercise(workoutExerciseE);
         journalA.addWorkout(workoutD);

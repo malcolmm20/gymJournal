@@ -8,7 +8,7 @@ import java.util.Objects;
 // open workout for user to record stats
 public class OpenWorkout {
     private final ArrayList<WorkoutExercise> workoutExercises;
-    private final LocalDate date;
+    private LocalDate date;
 
     // EFFECTS: initializes arraylist, records date of workout
     public OpenWorkout() {
@@ -21,12 +21,14 @@ public class OpenWorkout {
         return date;
     }
 
+    // REQUIRES: objects to be of same class
+    // EFFECTS: returns equal if object o holds the same values as this
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null) {
             return false;
         }
         OpenWorkout that = (OpenWorkout) o;
@@ -54,6 +56,12 @@ public class OpenWorkout {
         }
 
         return (this.date + " workout.\n" + exerciseString);
+    }
+
+    // MODIFIES: this, localdate
+    // EFFECTS:
+    public void addDays(long daysAdded) {
+        this.date = date.plusDays(daysAdded);
     }
 
     // EFFECTS: returns each exercise in workout's set with heaviest weight

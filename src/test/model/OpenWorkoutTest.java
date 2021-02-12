@@ -3,6 +3,7 @@ package model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,6 +37,8 @@ public class OpenWorkoutTest {
         assertEquals(workoutA, workoutA);
         assertEquals(workoutA, workoutC);
         assertNotEquals(workoutA, workoutD);
+        assertNotEquals(workoutA, workoutB);
+        workoutB.addDays(4);
         assertNotEquals(workoutA, workoutB);
     }
 
@@ -73,6 +76,12 @@ public class OpenWorkoutTest {
         heaviestSetHashMap.put("barbell back squat", setB);
         heaviestSetHashMap.put("leg press", setE);
         assertEquals(heaviestSetHashMap, workoutA.heaviestSets());
+    }
+
+    @Test
+    public void testGetDate() {
+        LocalDate compDate = LocalDate.now();
+        assertEquals(compDate, workoutA.getDate());
     }
 
     private void instantiate() {

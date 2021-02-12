@@ -14,12 +14,14 @@ public class WorkoutExercise {
         this.sets = new ArrayList<>();
     }
 
+    // REQUIRES: objects to be of same class
+    // EFFECTS: returns equal if object o holds the same values as this
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null) {
             return false;
         }
         WorkoutExercise that = (WorkoutExercise) o;

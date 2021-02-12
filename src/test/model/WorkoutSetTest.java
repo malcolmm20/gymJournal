@@ -11,6 +11,7 @@ public class WorkoutSetTest {
     private WorkoutSet setC;
     private WorkoutSet setD;
     private WorkoutSet setE;
+    private WorkoutSet setF;
 
     @BeforeEach
     void setUp() {
@@ -18,6 +19,7 @@ public class WorkoutSetTest {
         setB = new WorkoutSet(12, 0);
         setC = new WorkoutSet(8, 150);
         setE = new WorkoutSet(1, 200);
+        setF = new WorkoutSet(8, 175);
     }
 
     @Test
@@ -32,6 +34,7 @@ public class WorkoutSetTest {
         assertEquals(setA, setC);
         assertNotEquals(setA, setD);
         assertNotEquals(setA, setB);
+        assertNotEquals(setA, setF);
     }
 
     @Test
