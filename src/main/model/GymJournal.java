@@ -37,14 +37,6 @@ public class GymJournal {
                 && Objects.equals(routineHashMap, that.routineHashMap);
     }
 
-    public HashMap<String, WorkoutSet> getPersonalBests() {
-        return personalBests;
-    }
-
-    public HashMap<String, Double> getOneRepMaxes() {
-        return oneRepMaxes;
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(workoutHistory, personalBests, oneRepMaxes, routineHashMap);
@@ -153,7 +145,7 @@ public class GymJournal {
         String title = "PERSONAL BESTS\n--------------\n";
         for (HashMap.Entry<String, WorkoutSet> personalBest : personalBests.entrySet()) {
             result = result.concat(personalBest.getKey() + ": "
-                    + personalBest.getValue().getReps() + " reps,"
+                    + personalBest.getValue().getReps() + " reps, "
                     + personalBest.getValue().getWeight() + " lbs\n");
         }
         return title.concat(result);

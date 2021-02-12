@@ -36,6 +36,187 @@ class GymJournalTest {
         add();
     }
 
+    @Test
+    public void testEquals() {
+        assertEquals(journalA, journalA);
+        assertEquals(journalA, journalB);
+        assertNotEquals(journalA, journalC);
+        assertNotEquals(journalA, journalD);
+    }
+
+    @Test
+    public void testHashCode() {
+        assertEquals(journalA.hashCode(), journalB.hashCode());
+        assertNotEquals(journalA.hashCode(), journalC.hashCode());
+    }
+
+    @Test
+    public void testFindRoutine() {
+        assertEquals(routineA, journalA.findRoutine("routine 1"));
+        assertEquals(routineB, journalC.findRoutine("routine 2"));
+    }
+
+    @Test
+    public void testRoutineString() {
+        assertEquals("routine 2\n" +
+                "bench press: 4 sets\n" +
+                "bench press: 4 sets\n" +
+                "\n" +
+                "routine 3\n" +
+                "bench press: 5 sets\n" +
+                "leg press: 4 sets\n" +
+                "\n" +
+                "routine 1\n" +
+                "bench press: 4 sets\n" +
+                "bench press: 4 sets\n" +
+                "bench press: 5 sets\n\n", journalA.routineString());
+        assertEquals("routine 2\n" +
+                "bench press: 4 sets\n" +
+                "bench press: 4 sets\n" +
+                "\n" +
+                "routine 1\n" +
+                "bench press: 4 sets\n" +
+                "bench press: 4 sets\n" +
+                "bench press: 5 sets\n" +
+                "\n", journalC.routineString());
+    }
+
+    @Test
+    public void testWorkoutString() {
+        assertEquals(workoutA.toString() + "\n" + workoutB.toString()
+                + "\n", journalB.workoutString(2));
+        assertEquals(workoutA.toString() + "\n" + workoutB.toString()
+                + "\n" + workoutC.toString() + "\n", journalB.workoutString(4));
+        assertEquals(workoutA.toString() + "\n"
+                + workoutC.toString() + "\n", journalC.workoutString(3));
+    }
+
+    @Test
+    public void testDisplayPersonalBests() {
+        assertEquals("PERSONAL BESTS\n" +
+                "--------------\n" +
+                "bench press: 1 reps, 200 lbs\n" +
+                "barbell back squat: 8 reps, 150 lbs\n", journalA.displayPersonalBests());
+        assertEquals("PERSONAL BESTS\n" +
+                "--------------\n" +
+                "bench press: 1 reps, 200 lbs\n" +
+                "barbell back squat: 8 reps, 150 lbs\n", journalC.displayPersonalBests());
+    }
+
+    @Test
+    public void testDisplayOneRepMaxes() {
+        assertEquals("ONE REP MAXES\n" +
+                        "-------------\n" +
+                        "bench press: 200.0 lbs\n" +
+                        "barbell back squat: 190.0 lbs\n"
+                , journalA.displayOneRepMaxes());
+        assertEquals("ONE REP MAXES\n" +
+                "-------------\n" +
+                "bench press: 200.0 lbs\n" +
+                "barbell back squat: 190.0 lbs\n", journalC.displayOneRepMaxes());
+    }
+
+    @Test
+    public void testUpdateOneRepMaxesLarger() {
+        assertEquals("ONE REP MAXES\n" +
+                        "-------------\n" +
+                        "bench press: 200.0 lbs\n" +
+                        "barbell back squat: 190.0 lbs\n"
+                , journalA.displayOneRepMaxes());
+        OpenWorkout workoutD = new OpenWorkout();
+        WorkoutExercise workoutExerciseE = new WorkoutExercise("bench press");
+        WorkoutSet setF = new WorkoutSet(2, 250);
+        workoutExerciseE.addSet(setF);
+        workoutD.addExercise(workoutExerciseE);
+        journalA.addWorkout(workoutD);
+        assertEquals("ONE REP MAXES\n" +
+                        "-------------\n" +
+                        "bench press: 266.67 lbs\n" +
+                        "barbell back squat: 190.0 lbs\n"
+                , journalA.displayOneRepMaxes());
+    }
+
+    @Test
+    public void testUpdateOneRepMaxesNull() {
+        assertEquals("ONE REP MAXES\n" +
+                        "-------------\n" +
+                        "bench press: 200.0 lbs\n" +
+                        "barbell back squat: 190.0 lbs\n"
+                , journalA.displayOneRepMaxes());
+        OpenWorkout workoutD = new OpenWorkout();
+        WorkoutExercise workoutExerciseE = new WorkoutExercise("leg press");
+        WorkoutSet setF = new WorkoutSet(2, 250);
+        workoutExerciseE.addSet(setF);
+        workoutD.addExercise(workoutExerciseE);
+        journalA.addWorkout(workoutD);
+        assertEquals("ONE REP MAXES\n" +
+                        "-------------\n" +
+                        "leg press: 266.67 lbs\n" +
+                        "bench press: 200.0 lbs\n" +
+                        "barbell back squat: 190.0 lbs\n"
+                , journalA.displayOneRepMaxes());
+    }
+
+    @Test
+    public void testUpdatePersonalBestsLarger() {
+        assertEquals("PERSONAL BESTS\n" +
+                        "--------------\n" +
+                        "bench press: 1 reps, 200 lbs\n" +
+                        "barbell back squat: 8 reps, 150 lbs\n"
+                , journalA.displayPersonalBests());
+        OpenWorkout workoutD = new OpenWorkout();
+        WorkoutExercise workoutExerciseE = new WorkoutExercise("bench press");
+        WorkoutSet setF = new WorkoutSet(2, 250);
+        workoutExerciseE.addSet(setF);
+        workoutD.addExercise(workoutExerciseE);
+        journalA.addWorkout(workoutD);
+        assertEquals("PERSONAL BESTS\n" +
+                        "--------------\n" +
+                        "bench press: 2 reps, 250 lbs\n" +
+                        "barbell back squat: 8 reps, 150 lbs\n"
+                , journalA.displayPersonalBests());
+    }
+
+    @Test
+    public void testUpdatePersonalBestsEqual() {
+        assertEquals("PERSONAL BESTS\n" +
+                        "--------------\n" +
+                        "bench press: 1 reps, 200 lbs\n" +
+                        "barbell back squat: 8 reps, 150 lbs\n"
+                , journalA.displayPersonalBests());
+        OpenWorkout workoutD = new OpenWorkout();
+        WorkoutExercise workoutExerciseE = new WorkoutExercise("bench press");
+        WorkoutSet setF = new WorkoutSet(2, 200);
+        workoutExerciseE.addSet(setF);
+        workoutD.addExercise(workoutExerciseE);
+        journalA.addWorkout(workoutD);
+        assertEquals("PERSONAL BESTS\n" +
+                        "--------------\n" +
+                        "bench press: 2 reps, 200 lbs\n" +
+                        "barbell back squat: 8 reps, 150 lbs\n"
+                , journalA.displayPersonalBests());
+    }
+
+    @Test
+    public void testUpdatePersonalBestsLess() {
+        assertEquals("PERSONAL BESTS\n" +
+                        "--------------\n" +
+                        "bench press: 1 reps, 200 lbs\n" +
+                        "barbell back squat: 8 reps, 150 lbs\n"
+                , journalA.displayPersonalBests());
+        OpenWorkout workoutD = new OpenWorkout();
+        WorkoutExercise workoutExerciseE = new WorkoutExercise("bench press");
+        WorkoutSet setF = new WorkoutSet(1, 200);
+        workoutExerciseE.addSet(setF);
+        workoutD.addExercise(workoutExerciseE);
+        journalA.addWorkout(workoutD);
+        assertEquals("PERSONAL BESTS\n" +
+                        "--------------\n" +
+                        "bench press: 1 reps, 200 lbs\n" +
+                        "barbell back squat: 8 reps, 150 lbs\n"
+                , journalA.displayPersonalBests());
+    }
+
     private void add() {
         addSets();
         addRoutineExercises();
@@ -46,8 +227,8 @@ class GymJournalTest {
 
     private void addRoutines() {
         journalA.addRoutine(routineA);
-        journalA.addRoutine(routineA);
-        journalA.addRoutine(routineA);
+        journalA.addRoutine(routineB);
+        journalA.addRoutine(routineC);
         journalB.addRoutine(routineA);
         journalB.addRoutine(routineB);
         journalB.addRoutine(routineC);
@@ -149,9 +330,9 @@ class GymJournalTest {
     }
 
     private void instantiateRoutines() {
-        routineA = new Routine("chest day");
-        routineB = new Routine("chest day");
-        routineC = new Routine("leg day");
+        routineA = new Routine("routine 1");
+        routineB = new Routine("routine 2");
+        routineC = new Routine("routine 3");
     }
 
     private void instantiateWorkouts() {
