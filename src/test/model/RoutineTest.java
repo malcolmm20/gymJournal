@@ -23,22 +23,8 @@ public class RoutineTest {
 
     @BeforeEach
     void setUp() {
-        exerciseArrayListA = new ArrayList<>();
-        exerciseArrayListB = new ArrayList<>();
-        exerciseArrayListC = new ArrayList<>();
-        routineA = new Routine("chest day");
-        routineB = new Routine("chest day");
-        routineC = new Routine("leg day");
-        exerciseA = new RoutineExercise("bench press", 4);
-        exerciseB = new RoutineExercise("incline bench press", 4);
-        exerciseC = new RoutineExercise("squats", 5);
-        exerciseD = new RoutineExercise("leg press", 4);
-        routineA.addExercise(exerciseA);
-        routineA.addExercise(exerciseB);
-        routineB.addExercise(exerciseA);
-        routineB.addExercise(exerciseB);
-        routineC.addExercise(exerciseC);
-        routineC.addExercise(exerciseD);
+        instantiate();
+        addExercises();
     }
 
     @Test
@@ -85,5 +71,31 @@ public class RoutineTest {
                 + "\n" + exerciseB.toString() + "\n"), routineA.toString());
         assertEquals(routineC.getName().concat("\n" + exerciseC.toString()
                 + "\n" + exerciseD.toString() + "\n"), routineC.toString());
+    }
+
+    // MODIFIES: this
+    // EFFECTS: instantiates fields
+    private void instantiate() {
+        exerciseArrayListA = new ArrayList<>();
+        exerciseArrayListB = new ArrayList<>();
+        exerciseArrayListC = new ArrayList<>();
+        routineA = new Routine("chest day");
+        routineB = new Routine("chest day");
+        routineC = new Routine("leg day");
+        exerciseA = new RoutineExercise("bench press", 4);
+        exerciseB = new RoutineExercise("incline bench press", 4);
+        exerciseC = new RoutineExercise("squats", 5);
+        exerciseD = new RoutineExercise("leg press", 4);
+    }
+
+    // MODIFIES: routineA, routineB, routine C
+    // EFFECTS: adds exercises to routineA/B/C
+    private void addExercises() {
+        routineA.addExercise(exerciseA);
+        routineA.addExercise(exerciseB);
+        routineB.addExercise(exerciseA);
+        routineB.addExercise(exerciseB);
+        routineC.addExercise(exerciseC);
+        routineC.addExercise(exerciseD);
     }
 }

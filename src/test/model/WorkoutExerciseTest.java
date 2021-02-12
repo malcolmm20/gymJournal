@@ -20,36 +20,12 @@ public class WorkoutExerciseTest {
 
     @BeforeEach
     void setup() {
-        workoutExerciseA = new WorkoutExercise("bench press");
-        workoutExerciseB = new WorkoutExercise("barbell back squat");
-        workoutExerciseC = new WorkoutExercise("bench press");
-        workoutExerciseD = new WorkoutExercise("bench press");
-        setA = new WorkoutSet(10, 100);
-        setB = new WorkoutSet(8, 120);
-        setC = new WorkoutSet(3, 190);
-        setD = new WorkoutSet(7, 140);
-        setE = new WorkoutSet(2, 200);
-        setF = new WorkoutSet(3, 200);
-        workoutExerciseA.addSet(setA);
-        workoutExerciseA.addSet(setB);
-        workoutExerciseA.addSet(setC);
-        workoutExerciseA.addSet(setD);
-        workoutExerciseA.addSet(setE);
-        workoutExerciseC.addSet(setA);
-        workoutExerciseC.addSet(setB);
-        workoutExerciseC.addSet(setC);
-        workoutExerciseC.addSet(setD);
-        workoutExerciseC.addSet(setE);
-        workoutExerciseB.addSet(setA);
-        workoutExerciseB.addSet(setB);
-        workoutExerciseD.addSet(setC);
-        workoutExerciseD.addSet(setD);
-        workoutExerciseD.addSet(setE);
-        workoutExerciseD.addSet(setD);
-        workoutExerciseD.addSet(setE);
+        instantiate();
+        addSetExerciseA();
+        addSetExerciseB();
+        addSetExerciseC();
+        addSetExerciseD();
     }
-
-
 
     @Test
     void testEquals() {
@@ -94,5 +70,47 @@ public class WorkoutExerciseTest {
     void testGetName() {
         assertEquals("bench press", workoutExerciseA.getName());
         assertEquals("barbell back squat", workoutExerciseB.getName());
+    }
+
+    private void instantiate() {
+        workoutExerciseA = new WorkoutExercise("bench press");
+        workoutExerciseB = new WorkoutExercise("barbell back squat");
+        workoutExerciseC = new WorkoutExercise("bench press");
+        workoutExerciseD = new WorkoutExercise("bench press");
+        setA = new WorkoutSet(10, 100);
+        setB = new WorkoutSet(8, 120);
+        setC = new WorkoutSet(3, 190);
+        setD = new WorkoutSet(7, 140);
+        setE = new WorkoutSet(2, 200);
+        setF = new WorkoutSet(3, 200);
+    }
+
+    private void addSetExerciseA() {
+        workoutExerciseA.addSet(setA);
+        workoutExerciseA.addSet(setB);
+        workoutExerciseA.addSet(setC);
+        workoutExerciseA.addSet(setD);
+        workoutExerciseA.addSet(setE);
+    }
+
+    private void addSetExerciseB() {
+        workoutExerciseB.addSet(setA);
+        workoutExerciseB.addSet(setB);
+    }
+
+    private void addSetExerciseC() {
+        workoutExerciseC.addSet(setA);
+        workoutExerciseC.addSet(setB);
+        workoutExerciseC.addSet(setC);
+        workoutExerciseC.addSet(setD);
+        workoutExerciseC.addSet(setE);
+    }
+
+    private void addSetExerciseD() {
+        workoutExerciseD.addSet(setC);
+        workoutExerciseD.addSet(setD);
+        workoutExerciseD.addSet(setE);
+        workoutExerciseD.addSet(setD);
+        workoutExerciseD.addSet(setE);
     }
 }

@@ -57,9 +57,8 @@ public class GymJournal {
         updateExercises(openWorkout);
     }
 
-    // REQUIRES:
-    // MODIFIES:
-    // EFFECTS:
+    // REQUIRES: workout to not be null
+    // EFFECTS: calls update personalBests and update OneRepMaxes with the result of workout.heaviestSets
     private void updateExercises(OpenWorkout workout) {
         HashMap<String, WorkoutSet> heaviestSets = workout.heaviestSets();
         updatePersonalBests(heaviestSets);
@@ -139,8 +138,6 @@ public class GymJournal {
         }
         return result;
     }
-
-
 
     public String displayOneRepMaxes() {
         String result = "";

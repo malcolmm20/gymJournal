@@ -25,45 +25,9 @@ public class OpenWorkoutTest {
 
     @BeforeEach
     void setUp() {
-        workoutA = new OpenWorkout();
-        workoutB = new OpenWorkout();
-        workoutC = new OpenWorkout();
-        workoutExerciseA = new WorkoutExercise("bench press");
-        workoutExerciseB = new WorkoutExercise("barbell back squat");
-        workoutExerciseC = new WorkoutExercise("leg press");
-        workoutExerciseD = new WorkoutExercise("shoulder press");
-        setA = new WorkoutSet(10, 100);
-        setB = new WorkoutSet(8, 120);
-        setC = new WorkoutSet(3, 190);
-        setD = new WorkoutSet(7, 140);
-        setE = new WorkoutSet(2, 200);
-        workoutExerciseA.addSet(setA);
-        workoutExerciseA.addSet(setB);
-        workoutExerciseA.addSet(setC);
-        workoutExerciseA.addSet(setD);
-        workoutExerciseA.addSet(setE);
-        workoutExerciseC.addSet(setA);
-        workoutExerciseC.addSet(setB);
-        workoutExerciseC.addSet(setC);
-        workoutExerciseC.addSet(setD);
-        workoutExerciseC.addSet(setE);
-        workoutExerciseB.addSet(setA);
-        workoutExerciseB.addSet(setB);
-        workoutExerciseD.addSet(setC);
-        workoutExerciseD.addSet(setD);
-        workoutExerciseD.addSet(setE);
-        workoutExerciseD.addSet(setD);
-        workoutExerciseD.addSet(setE);
-        workoutA.addExercise(workoutExerciseA);
-        workoutA.addExercise(workoutExerciseB);
-        workoutA.addExercise(workoutExerciseC);
-        workoutC.addExercise(workoutExerciseA);
-        workoutC.addExercise(workoutExerciseB);
-        workoutC.addExercise(workoutExerciseC);
-        workoutB.addExercise(workoutExerciseA);
-        workoutB.addExercise(workoutExerciseB);
-        workoutB.addExercise(workoutExerciseD);
-        workoutB.addExercise(workoutExerciseD);
+        instantiate();
+        addSets();
+        addExercises();
     }
 
 
@@ -109,5 +73,53 @@ public class OpenWorkoutTest {
         heaviestSetHashMap.put("barbell back squat", setB);
         heaviestSetHashMap.put("leg press", setE);
         assertEquals(heaviestSetHashMap, workoutA.heaviestSets());
+    }
+
+    private void instantiate() {
+        workoutA = new OpenWorkout();
+        workoutB = new OpenWorkout();
+        workoutC = new OpenWorkout();
+        workoutExerciseA = new WorkoutExercise("bench press");
+        workoutExerciseB = new WorkoutExercise("barbell back squat");
+        workoutExerciseC = new WorkoutExercise("leg press");
+        workoutExerciseD = new WorkoutExercise("shoulder press");
+        setA = new WorkoutSet(10, 100);
+        setB = new WorkoutSet(8, 120);
+        setC = new WorkoutSet(3, 190);
+        setD = new WorkoutSet(7, 140);
+        setE = new WorkoutSet(2, 200);
+    }
+
+    private void addSets() {
+        workoutExerciseA.addSet(setA);
+        workoutExerciseA.addSet(setB);
+        workoutExerciseA.addSet(setC);
+        workoutExerciseA.addSet(setD);
+        workoutExerciseA.addSet(setE);
+        workoutExerciseC.addSet(setA);
+        workoutExerciseC.addSet(setB);
+        workoutExerciseC.addSet(setC);
+        workoutExerciseC.addSet(setD);
+        workoutExerciseC.addSet(setE);
+        workoutExerciseB.addSet(setA);
+        workoutExerciseB.addSet(setB);
+        workoutExerciseD.addSet(setC);
+        workoutExerciseD.addSet(setD);
+        workoutExerciseD.addSet(setE);
+        workoutExerciseD.addSet(setD);
+        workoutExerciseD.addSet(setE);
+    }
+
+    private void addExercises() {
+        workoutA.addExercise(workoutExerciseA);
+        workoutA.addExercise(workoutExerciseB);
+        workoutA.addExercise(workoutExerciseC);
+        workoutC.addExercise(workoutExerciseA);
+        workoutC.addExercise(workoutExerciseB);
+        workoutC.addExercise(workoutExerciseC);
+        workoutB.addExercise(workoutExerciseA);
+        workoutB.addExercise(workoutExerciseB);
+        workoutB.addExercise(workoutExerciseD);
+        workoutB.addExercise(workoutExerciseD);
     }
 }
