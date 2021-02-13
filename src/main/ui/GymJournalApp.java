@@ -130,7 +130,7 @@ public class GymJournalApp {
     // EFFECTS: if user enters valid routine, starts the routine workout
     private void findWorkoutRoutine() {
         System.out.println("Which routine will you be doing today?\n "
-                + "Enter the name of the routine as it appears below.");
+                + "Enter the name of the routine as it appears below.\n");
         if (gymJournal.routineString().equals("")) {
             System.out.println("No routines have been created. Enter 'q' to return to the menu.");
         } else {
