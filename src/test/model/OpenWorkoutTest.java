@@ -40,6 +40,8 @@ public class OpenWorkoutTest {
         assertNotEquals(workoutA, workoutB);
         workoutB.addDays(4);
         assertNotEquals(workoutA, workoutB);
+        workoutC.addDays(4);
+        assertNotEquals(workoutA, workoutC);
     }
 
     @Test

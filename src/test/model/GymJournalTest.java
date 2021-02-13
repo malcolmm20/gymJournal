@@ -10,6 +10,7 @@ class GymJournalTest {
     private GymJournal journalB;
     private GymJournal journalC;
     private GymJournal journalD;
+    private GymJournal journalE;
     private RoutineExercise exerciseA;
     private RoutineExercise exerciseB;
     private RoutineExercise exerciseC;
@@ -38,10 +39,17 @@ class GymJournalTest {
 
     @Test
     public void testEquals() {
+        journalE = new GymJournal();
         assertEquals(journalA, journalA);
         assertEquals(journalA, journalB);
         assertNotEquals(journalA, journalC);
         assertNotEquals(journalA, journalD);
+        journalE.addWorkout(workoutA);
+        journalE.addWorkout(workoutB);
+        journalE.addWorkout(workoutC);
+        journalE.addRoutine(routineB);
+        journalE.addRoutine(routineC);
+        assertNotEquals(journalA, journalE);
     }
 
     @Test

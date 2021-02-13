@@ -34,8 +34,6 @@ public class GymJournal {
         }
         GymJournal that = (GymJournal) o;
         return Objects.equals(workoutHistory, that.workoutHistory)
-                && Objects.equals(personalBests, that.personalBests)
-                && Objects.equals(oneRepMaxes, that.oneRepMaxes)
                 && Objects.equals(routineHashMap, that.routineHashMap);
     }
 
