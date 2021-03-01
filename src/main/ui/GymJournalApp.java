@@ -1,13 +1,19 @@
 package ui;
 
 import model.*;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 // Gym journal application
 // Structure follows TellerApp structure
 public class GymJournalApp {
     private static final String JSON_STORE = "./data/gymJournalLog.json";
+    private JsonReader reader;
+    private JsonWriter writer;
     private Scanner input;
     private GymJournal gymJournal;
 
@@ -67,12 +73,33 @@ public class GymJournalApp {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: loads gym journal from file
+    // CITATION: modelled after loadWorkRoom from JsonSerializationDemo.ui.WorkRoomApp
     private void loadGymJournal() {
+        try {
+            gymJournal = reader.read();
+            System.out.println("Loaded Gym Journal from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file " + JSON_STORE);
+        }
     }
 
+    // EFFECTS: saves gym journal to file
+    // CITATION: modelled after loadWorkRoom from JsonSerializationDemo.ui.WorkRoomApp
     private void saveGymJournal() {
+        try {
+            writer.open();
+            writer.write(gymJournal);
+            writer.close();
+            System.out.println("Saved Gym Journal to " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to write to file " + JSON_STORE);
+        }
     }
 
+
+    // EFFECTS: displays one rep maxes
     private void displayOneRepMaxes() {
         System.out.println(gymJournal.displayOneRepMaxes());
         System.out.println("Press 'r' to return to the menu");
@@ -82,6 +109,7 @@ public class GymJournalApp {
         }
     }
 
+    // EFFECTS: displays personal bests
     private void displayPersonalBests() {
         System.out.println(gymJournal.displayPersonalBests());
         System.out.println("Press 'r' to return to the menu");
@@ -123,6 +151,8 @@ public class GymJournalApp {
     private void initialize() {
         gymJournal = new GymJournal();
         input = new Scanner(System.in);
+        writer = new JsonWriter(JSON_STORE);
+        reader = new JsonReader(JSON_STORE);
     }
 
     // MODIFIES: this

@@ -1,6 +1,76 @@
 {
-  "workout history": [],
-  "routines": [],
-  "personal bests":[],
-  "one rep maxes":[]
+    "workout history": [{
+        "date": "2021-02-28",
+        "exercises": [
+            {
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 100
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 110
+                    }
+                ],
+                "exercise name": "bench press"
+            },
+            {
+                "sets": [
+                    {
+                        "reps": 10,
+                        "weight": 100
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 110
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 120
+                    }
+                ],
+                "exercise name": "incline bench press"
+            }
+        ]
+    }],
+    "one rep maxes": [
+        {
+            "exercise": "bench press",
+            "weight": 146.67
+        },
+        {
+            "exercise": "incline bench press",
+            "weight": 160
+        }
+    ],
+    "routines": [{
+        "exercises": [
+            {
+                "sets": 2,
+                "exercise name": "bench press"
+            },
+            {
+                "sets": 3,
+                "exercise name": "incline bench press"
+            }
+        ],
+        "name": "chest day"
+    }],
+    "personal bests": [
+        {
+            "exercise": "bench press",
+            "details": {
+                "reps": 10,
+                "weight": 110
+            }
+        },
+        {
+            "exercise": "incline bench press",
+            "details": {
+                "reps": 10,
+                "weight": 120
+            }
+        }
+    ]
 }

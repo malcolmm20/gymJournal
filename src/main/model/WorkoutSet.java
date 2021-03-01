@@ -72,6 +72,9 @@ public class WorkoutSet implements Writable {
 
     @Override
     public JSONObject toJson() {
-        return null;
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("reps", this.reps);
+        jsonObject.put("weight", this.weight);
+        return jsonObject;
     }
 }

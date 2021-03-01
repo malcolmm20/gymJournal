@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
@@ -76,6 +77,19 @@ public class WorkoutExercise implements Writable {
 
     @Override
     public JSONObject toJson() {
-        return null;
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("exercise name", this.name);
+        jsonObject.put("sets", workoutSetsToJson());
+        return jsonObject;
+    }
+
+    private JSONArray workoutSetsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (WorkoutSet set : this.sets) {
+            jsonArray.put(set.toJson());
+        }
+
+        return jsonArray;
     }
 }

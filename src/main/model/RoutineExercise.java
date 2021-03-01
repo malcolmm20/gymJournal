@@ -58,6 +58,9 @@ public class RoutineExercise implements Writable {
 
     @Override
     public JSONObject toJson() {
-        return null;
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("exercise name", this.name);
+        jsonObject.put("sets", this.sets);
+        return jsonObject;
     }
 }

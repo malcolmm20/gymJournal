@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
@@ -78,6 +79,20 @@ public class OpenWorkout implements Writable {
 
     @Override
     public JSONObject toJson() {
-        return null;
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("date", this.date);
+        jsonObject.put("exercises", workoutExercisesToJson());
+        return jsonObject;
+    }
+
+    // EFFECTS: returns exercise array list as json array
+    private JSONArray workoutExercisesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (WorkoutExercise e : this.workoutExercises) {
+            jsonArray.put(e.toJson());
+        }
+
+        return jsonArray;
     }
 }

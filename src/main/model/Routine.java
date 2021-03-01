@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
@@ -64,6 +65,20 @@ public class Routine implements Writable {
 
     @Override
     public JSONObject toJson() {
-        return null;
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name", this.name);
+        jsonObject.put("exercises", exercisesToJson());
+        return jsonObject;
+    }
+
+    // EFFECTS: returns exercise array list as json array
+    private JSONArray exercisesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (RoutineExercise e : this.exercises) {
+            jsonArray.put(e.toJson());
+        }
+
+        return jsonArray;
     }
 }
