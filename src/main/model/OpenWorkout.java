@@ -1,12 +1,15 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
 // open workout for user to record stats
-public class OpenWorkout {
+public class OpenWorkout implements Writable {
     private final ArrayList<WorkoutExercise> workoutExercises;
     private LocalDate date;
 
@@ -71,5 +74,10 @@ public class OpenWorkout {
             heaviestSets.put(exercise.getName(), exercise.heaviestSet());
         }
         return heaviestSets;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        return null;
     }
 }

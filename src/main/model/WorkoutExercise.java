@@ -1,10 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 // individual strength exercises, tracks name sets, reps, weight
-public class WorkoutExercise {
+public class WorkoutExercise implements Writable {
     String name;
     private final ArrayList<WorkoutSet> sets;
 
@@ -69,5 +72,10 @@ public class WorkoutExercise {
             exerciseSet = exerciseSet.concat(set.toString() + "\n");
         }
         return (this.name + "\n" + exerciseSet);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        return null;
     }
 }

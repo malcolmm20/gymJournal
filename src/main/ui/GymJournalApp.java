@@ -7,6 +7,7 @@ import java.util.Scanner;
 // Gym journal application
 // Structure follows TellerApp structure
 public class GymJournalApp {
+    private static final String JSON_STORE = "./data/gymJournalLog.json";
     private Scanner input;
     private GymJournal gymJournal;
 
@@ -55,9 +56,21 @@ public class GymJournalApp {
             case "o":
                 displayOneRepMaxes();
                 break;
+            case "s":
+                saveGymJournal();
+                break;
+            case "l":
+                loadGymJournal();
+                break;
             default:
                 System.out.println("Selection not valid. Please choose a valid option.");
         }
+    }
+
+    private void loadGymJournal() {
+    }
+
+    private void saveGymJournal() {
     }
 
     private void displayOneRepMaxes() {
@@ -100,6 +113,8 @@ public class GymJournalApp {
                 + "create a workout routine - enter 'r'\n"
                 + "check your personal best for an exercise - enter 'b'\n"
                 + "check your estimated one rep max for an exercise - enter 'o'\n"
+                + "save your gym journal to file - enter 's'\n"
+                + "load your gym journal from file - enter 'l'\n"
                 + "quit - enter 'q'");
     }
 

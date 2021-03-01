@@ -1,11 +1,14 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
 
 // each instance is a set. records reps and weight, for a set.
-public class WorkoutSet {
+public class WorkoutSet implements Writable {
     private final int reps;
     private final int weight;
 
@@ -65,5 +68,10 @@ public class WorkoutSet {
         }
         BigDecimal bd = new BigDecimal(oneRepMax).setScale(2, RoundingMode.HALF_UP);
         return bd.doubleValue();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        return null;
     }
 }

@@ -1,9 +1,12 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.Objects;
 
 // stores name of exercise and amount of sets for each exercise in a routine
-public class RoutineExercise {
+public class RoutineExercise implements Writable {
     private final String name;
     private final int sets;
 
@@ -53,4 +56,8 @@ public class RoutineExercise {
         return (this.name + ": " + this.sets + " sets");
     }
 
+    @Override
+    public JSONObject toJson() {
+        return null;
+    }
 }

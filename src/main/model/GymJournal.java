@@ -1,12 +1,15 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
 //journal that records workouts, exercises
-public class GymJournal {
+public class GymJournal implements Writable {
 
     private final ArrayList<OpenWorkout> workoutHistory;
     private final HashMap<String, WorkoutSet> personalBests;
@@ -149,5 +152,10 @@ public class GymJournal {
                     + personalBest.getValue().getWeight() + " lbs\n");
         }
         return title.concat(result);
+    }
+
+    @Override
+    public JSONObject toJson() {
+        return null;
     }
 }

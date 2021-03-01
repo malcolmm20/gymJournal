@@ -1,10 +1,13 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 //routines that users repeat
-public class Routine {
+public class Routine implements Writable {
     private final String name;
     private final ArrayList<RoutineExercise> exercises;
 
@@ -57,5 +60,10 @@ public class Routine {
             result = result.concat(exercise.toString() + "\n");
         }
         return (this.name.concat("\n" + result));
+    }
+
+    @Override
+    public JSONObject toJson() {
+        return null;
     }
 }
