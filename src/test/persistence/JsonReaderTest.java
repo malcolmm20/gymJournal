@@ -3,12 +3,14 @@ package persistence;
 import model.GymJournal;
 import model.OpenWorkout;
 import model.Routine;
+import model.WorkoutExercise;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,12 +37,26 @@ public class JsonReaderTest {
     }
 
     @Test
-    void testReaderEmptyWorkRoom() {
-        JsonReader reader = new JsonReader("./data/gymJournalLog.json");
+    void testReaderEmptyGymJournal() {
+        JsonReader reader = new JsonReader("./data/testReaderEmptyGymJournal.json");
         try {
             HashMap<String, ArrayList<Writable>> gjHashMap = reader.read();
             assertEquals(0, gjHashMap.get("workouts").size());
             assertEquals(0, gjHashMap.get("routines").size());
+        } catch (IOException e) {
+            fail("Couldn't read from file");
+        }
+    }
+
+    @Test
+    void testReaderGeneralGymJournal() {
+        JsonReader reader = new JsonReader("./data/testReaderGeneralGymJournal.json");
+        try {
+            HashMap<String, ArrayList<Writable>> gjHashMap = reader.read();
+            loadRoutines(gjHashMap.get("routines"));
+            loadWorkouts(gjHashMap.get("workouts"));
+            assertEquals(1, gjHashMap.get("workouts").size());
+            assertEquals(1, gjHashMap.get("routines").size());
         } catch (IOException e) {
             fail("Couldn't read from file");
         }

@@ -1,0 +1,34 @@
+{
+    "workout history": [{
+        "date": "2021-03-02",
+        "exercises": [
+            {
+                "sets": [{
+                    "reps": 10,
+                    "weight": 100
+                }],
+                "exercise name": "bench press"
+            },
+            {
+                "sets": [{
+                    "reps": 10,
+                    "weight": 100
+                }],
+                "exercise name": "chest fly"
+            }
+        ]
+    }],
+    "routines": [{
+        "exercises": [
+            {
+                "sets": 3,
+                "exercise name": "bench press"
+            },
+            {
+                "sets": 2,
+                "exercise name": "chest fly"
+            }
+        ],
+        "name": "chest day"
+    }]
+}
