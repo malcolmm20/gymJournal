@@ -26,6 +26,37 @@ public class GymJournal implements Writable {
         routineHashMap = new HashMap<>();
     }
 
+    // EFFECTS: returns gym journal as JSONObject
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("workout history", workoutHistoryToJson());
+        json.put("routines", routineHashMapToJson());
+        return json;
+    }
+
+    // EFFECTS: returns workout history as JSONArray
+    private JSONArray workoutHistoryToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (OpenWorkout ow : this.workoutHistory) {
+            jsonArray.put(ow.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    // EFFECTS: returns routine hashmap as JSON array
+    private JSONArray routineHashMapToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (HashMap.Entry<String, Routine> routine : this.routineHashMap.entrySet()) {
+            jsonArray.put(routine.getValue().toJson());
+        }
+
+        return jsonArray;
+    }
+
     // REQUIRES: objects to be of same class
     // EFFECTS: returns equal if object o holds the same values as this
     @Override
@@ -153,76 +184,5 @@ public class GymJournal implements Writable {
                     + personalBest.getValue().getWeight() + " lbs\n");
         }
         return title.concat(result);
-    }
-
-    // EFFECTS: returns gym journal as JSONObject
-    @Override
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("workout history", workoutHistoryToJson());
-        json.put("routines", routineHashMapToJson());
-        json.put("personal bests", personalBestsToJson());
-        json.put("one rep maxes", oneRepMaxesToJson());
-        return json;
-    }
-
-    // EFFECTS: returns workout history as JSONArray
-    private JSONArray workoutHistoryToJson() {
-        JSONArray jsonArray = new JSONArray();
-
-        for (OpenWorkout ow : this.workoutHistory) {
-            jsonArray.put(ow.toJson());
-        }
-
-        return jsonArray;
-    }
-
-    // EFFECTS: returns routine hashmap as JSON array
-    private JSONArray routineHashMapToJson() {
-        JSONArray jsonArray = new JSONArray();
-
-        for (HashMap.Entry<String, Routine> routine : this.routineHashMap.entrySet()) {
-            jsonArray.put(routine.getValue().toJson());
-        }
-
-        return jsonArray;
-    }
-
-    // EFFECTS: returns personal best hashmap as json array
-    private JSONArray personalBestsToJson() {
-        JSONArray jsonArray = new JSONArray();
-
-        for (HashMap.Entry<String, WorkoutSet> pb : this.personalBests.entrySet()) {
-            jsonArray.put(personalBestToJson(pb.getKey(), pb.getValue()));
-        }
-
-        return jsonArray;
-    }
-
-    // EFFECTS: returns personal best hashmap as json array
-    private JSONArray oneRepMaxesToJson() {
-        JSONArray jsonArray = new JSONArray();
-
-        for (HashMap.Entry<String, Double> d : this.oneRepMaxes.entrySet()) {
-            jsonArray.put(oneRepMaxToJson(d.getKey(), d.getValue()));
-        }
-
-        return jsonArray;
-    }
-
-    // EFFECTS: returns personal best for one exercise as json object
-    private JSONObject personalBestToJson(String exercise, WorkoutSet set) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("exercise", exercise);
-        jsonObject.put("details", set.toJson());
-        return jsonObject;
-    }
-
-    // EFFECTS: returns one rep max for one exercise as json object
-    private JSONObject oneRepMaxToJson(String exercise, Double weight) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("exercise", exercise);
-        jsonObject.put("weight", weight);
-        return jsonObject;
     }
 }

@@ -17,6 +17,25 @@ public class Routine implements Writable {
         exercises = new ArrayList<>();
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("name", this.name);
+        jsonObject.put("exercises", exercisesToJson());
+        return jsonObject;
+    }
+
+    // EFFECTS: returns exercise array list as json array
+    private JSONArray exercisesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (RoutineExercise e : this.exercises) {
+            jsonArray.put(e.toJson());
+        }
+
+        return jsonArray;
+    }
+
     // REQUIRES: objects to be of same class
     // EFFECTS: returns equal if object o holds the same values as this
     @Override
@@ -61,24 +80,5 @@ public class Routine implements Writable {
             result = result.concat(exercise.toString() + "\n");
         }
         return (this.name.concat("\n" + result));
-    }
-
-    @Override
-    public JSONObject toJson() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("name", this.name);
-        jsonObject.put("exercises", exercisesToJson());
-        return jsonObject;
-    }
-
-    // EFFECTS: returns exercise array list as json array
-    private JSONArray exercisesToJson() {
-        JSONArray jsonArray = new JSONArray();
-
-        for (RoutineExercise e : this.exercises) {
-            jsonArray.put(e.toJson());
-        }
-
-        return jsonArray;
     }
 }

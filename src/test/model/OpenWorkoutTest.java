@@ -83,7 +83,21 @@ public class OpenWorkoutTest {
     @Test
     public void testGetDate() {
         LocalDate compDate = LocalDate.now();
+        String date = "2016-08-16";
+        LocalDate newDate = LocalDate.parse(date);
         assertEquals(compDate, workoutA.getDate());
+        workoutB.setDate(newDate);
+        assertEquals(newDate, workoutB.getDate());
+    }
+
+    @Test
+    void testSetDate() {
+        LocalDate compDate = LocalDate.now();
+        String date = "2016-08-16";
+        LocalDate newDate = LocalDate.parse(date);
+        assertEquals(compDate, workoutA.getDate());
+        workoutA.setDate(newDate);
+        assertEquals(newDate, workoutA.getDate());
     }
 
     private void instantiate() {

@@ -3,9 +3,12 @@ package ui;
 import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import persistence.Writable;
 
 import java.io.IOException;
 import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 // Gym journal application
@@ -47,26 +50,19 @@ public class GymJournalApp {
     // EFFECTS: processes user command
     private void processCommand(String command) {
         switch (command) {
-            case "w":
-                startWorkout();
+            case "w": startWorkout();
                 break;
-            case "h":
-                workoutHistory();
+            case "h": workoutHistory();
                 break;
-            case "r":
-                createRoutine();
+            case "r": createRoutine();
                 break;
-            case "b":
-                displayPersonalBests();
+            case "b": displayPersonalBests();
                 break;
-            case "o":
-                displayOneRepMaxes();
+            case "o": displayOneRepMaxes();
                 break;
-            case "s":
-                saveGymJournal();
+            case "s": saveGymJournal();
                 break;
-            case "l":
-                loadGymJournal();
+            case "l": loadGymJournal();
                 break;
             default:
                 System.out.println("Selection not valid. Please choose a valid option.");
@@ -78,10 +74,30 @@ public class GymJournalApp {
     // CITATION: modelled after loadWorkRoom from JsonSerializationDemo.ui.WorkRoomApp
     private void loadGymJournal() {
         try {
-            gymJournal = reader.read();
+            HashMap<String, ArrayList<Writable>> gjHashMap = reader.read();
+            loadRoutines(gjHashMap.get("routines"));
+            loadWorkouts(gjHashMap.get("workouts"));
             System.out.println("Loaded Gym Journal from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: gymJournal
+    // EFFECTS: loads workouts from arraylist to gym journal
+    private void loadWorkouts(ArrayList<Writable> workouts) {
+        for (Writable w : workouts) {
+            OpenWorkout ow = (OpenWorkout) w;
+            gymJournal.addWorkout(ow);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads routines from array list to gym journal
+    private void loadRoutines(ArrayList<Writable> routines) {
+        for (Writable w : routines) {
+            Routine r = (Routine) w;
+            gymJournal.addRoutine(r);
         }
     }
 

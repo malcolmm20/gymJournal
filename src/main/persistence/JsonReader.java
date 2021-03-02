@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.stream.Stream;
 
 import org.json.*;
@@ -15,7 +18,7 @@ import org.json.*;
  * Cited from JsonReader in JsonSerializationDemo
  */
 public class JsonReader {
-    private String source;
+    private final String source;
 
     // EFFECTS: constructs reader to read from source file
     public JsonReader(String source) {
@@ -24,7 +27,7 @@ public class JsonReader {
 
     // EFFECTS: reads and returns gym journal from a file
     // throws IOException if error occurs while reading file
-    public GymJournal read() throws IOException {
+    public HashMap<String, ArrayList<Writable>> read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseGymJournal(jsonObject);
@@ -42,13 +45,77 @@ public class JsonReader {
     }
 
     // EFFECTS: parses gym journal from JSON Object and returns it
-    private GymJournal parseGymJournal(JSONObject jsonObject) {
-        GymJournal gj = new GymJournal();
-        //addWorkoutHistory(gj, jsonObject);
-        //addRoutines(gj, jsonObject);
-        //addPersonalBests(gj, jsonObject);
-        //addOneRepMaxes(gj, jsonObject);
-        return gj;
+    private HashMap<String, ArrayList<Writable>> parseGymJournal(JSONObject jsonObject) {
+        HashMap<String, ArrayList<Writable>> gjHashMap = new HashMap<>();
+        ArrayList routines = new ArrayList<Writable>();
+        ArrayList workouts = new ArrayList<Writable>();
+        gjHashMap.put("routines", routines);
+        gjHashMap.put("workouts", workouts);
+        addWorkouts(gjHashMap, jsonObject);
+        addRoutines(gjHashMap, jsonObject);
+        return gjHashMap;
     }
 
+    // MODIFIES: gj
+    // EFFECTS: parses workout history from JSON object and adds to gj
+    private void addWorkouts(HashMap<String, ArrayList<Writable>> gj, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("workout history");
+        for (Object json : jsonArray) {
+            JSONObject nextWorkout = (JSONObject) json;
+            addWorkout(gj, nextWorkout);
+        }
+    }
+
+    private void addWorkout(HashMap<String, ArrayList<Writable>> gj, JSONObject nextWorkout) {
+        OpenWorkout ow = new OpenWorkout();
+        LocalDate date = LocalDate.parse(nextWorkout.getString("date"));
+        ow.setDate(date);
+        JSONArray jsonArray = nextWorkout.getJSONArray("exercises");
+        for (Object json : jsonArray) {
+            JSONObject nextExercise = (JSONObject) json;
+            addExercise(ow, nextExercise);
+        }
+        gj.get("workouts").add(ow);
+    }
+
+    private void addExercise(OpenWorkout ow, JSONObject nextExercise) {
+        WorkoutExercise e = new WorkoutExercise(nextExercise.getString("exercise name"));
+        JSONArray jsonArray = nextExercise.getJSONArray("sets");
+        for (Object json : jsonArray) {
+            JSONObject nextSet = (JSONObject) json;
+            addSet(e, nextSet);
+        }
+        ow.addExercise(e);
+    }
+
+    private void addSet(WorkoutExercise e, JSONObject nextSet) {
+        WorkoutSet s = new WorkoutSet(nextSet.getInt("reps"), nextSet.getInt("weight"));
+        e.addSet(s);
+    }
+
+    // MODIFIES: gj
+    // EFFECTS: parses routines from JSONObject and adds to gj
+    private void addRoutines(HashMap<String, ArrayList<Writable>> gj, JSONObject jsonObject) {
+        JSONArray jsonArray = jsonObject.getJSONArray("routines");
+        for (Object json : jsonArray) {
+            JSONObject nextRoutine = (JSONObject) json;
+            addRoutine(gj, nextRoutine);
+        }
+    }
+
+    private void addRoutine(HashMap<String, ArrayList<Writable>> gj, JSONObject nextRoutine) {
+        JSONArray jsonArray = nextRoutine.getJSONArray("exercises");
+        Routine r = new Routine(nextRoutine.getString("name"));
+        for (Object json : jsonArray) {
+            JSONObject nextRoutineExercise = (JSONObject) json;
+            addRoutineExercise(r, nextRoutineExercise);
+        }
+        gj.get("routines").add(r);
+    }
+
+    private void addRoutineExercise(Routine r, JSONObject nextRoutineExercise) {
+        RoutineExercise re = new RoutineExercise(nextRoutineExercise.getString("exercise name"),
+                nextRoutineExercise.getInt("sets"));
+        r.addExercise(re);
+    }
 }

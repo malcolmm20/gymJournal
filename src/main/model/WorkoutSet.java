@@ -20,6 +20,14 @@ public class WorkoutSet implements Writable {
 
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("reps", this.reps);
+        jsonObject.put("weight", this.weight);
+        return jsonObject;
+    }
+
     // REQUIRES: objects to be of same class
     // EFFECTS: returns equal if object o holds the same values as this
     @Override
@@ -68,13 +76,5 @@ public class WorkoutSet implements Writable {
         }
         BigDecimal bd = new BigDecimal(oneRepMax).setScale(2, RoundingMode.HALF_UP);
         return bd.doubleValue();
-    }
-
-    @Override
-    public JSONObject toJson() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("reps", this.reps);
-        jsonObject.put("weight", this.weight);
-        return jsonObject;
     }
 }

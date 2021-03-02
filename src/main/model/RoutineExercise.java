@@ -17,6 +17,14 @@ public class RoutineExercise implements Writable {
         this.sets = sets;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("exercise name", this.name);
+        jsonObject.put("sets", this.sets);
+        return jsonObject;
+    }
+
     // REQUIRES: objects to be of same class
     // EFFECTS: returns equal if object o holds the same values as this
     @Override
@@ -56,11 +64,5 @@ public class RoutineExercise implements Writable {
         return (this.name + ": " + this.sets + " sets");
     }
 
-    @Override
-    public JSONObject toJson() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("exercise name", this.name);
-        jsonObject.put("sets", this.sets);
-        return jsonObject;
-    }
+
 }

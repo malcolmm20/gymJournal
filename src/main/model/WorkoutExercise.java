@@ -18,6 +18,24 @@ public class WorkoutExercise implements Writable {
         this.sets = new ArrayList<>();
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("exercise name", this.name);
+        jsonObject.put("sets", workoutSetsToJson());
+        return jsonObject;
+    }
+
+    private JSONArray workoutSetsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (WorkoutSet set : this.sets) {
+            jsonArray.put(set.toJson());
+        }
+
+        return jsonArray;
+    }
+
     // REQUIRES: objects to be of same class
     // EFFECTS: returns equal if object o holds the same values as this
     @Override
@@ -73,23 +91,5 @@ public class WorkoutExercise implements Writable {
             exerciseSet = exerciseSet.concat(set.toString() + "\n");
         }
         return (this.name + "\n" + exerciseSet);
-    }
-
-    @Override
-    public JSONObject toJson() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("exercise name", this.name);
-        jsonObject.put("sets", workoutSetsToJson());
-        return jsonObject;
-    }
-
-    private JSONArray workoutSetsToJson() {
-        JSONArray jsonArray = new JSONArray();
-
-        for (WorkoutSet set : this.sets) {
-            jsonArray.put(set.toJson());
-        }
-
-        return jsonArray;
     }
 }
