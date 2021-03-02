@@ -23,6 +23,12 @@ public class WorkoutSetTest {
     }
 
     @Test
+    void testToJson() {
+        assertTrue(setA.toJson().similar(setC.toJson()));
+        assertFalse(setA.toJson().similar(setB.toJson()));
+    }
+
+    @Test
     void testToString() {
         assertEquals("8 reps, 150 lbs", setA.toString());
         assertEquals("12 reps, 0 lbs", setB.toString());

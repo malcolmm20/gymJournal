@@ -28,6 +28,12 @@ public class WorkoutExerciseTest {
     }
 
     @Test
+    void testToJson() {
+        assertTrue(workoutExerciseA.toJson().similar(workoutExerciseC.toJson()));
+        assertFalse(workoutExerciseA.toJson().similar(workoutExerciseD.toJson()));
+    }
+
+    @Test
     void testEquals() {
          assertEquals(workoutExerciseA, workoutExerciseA);
          assertEquals(workoutExerciseA, workoutExerciseC);

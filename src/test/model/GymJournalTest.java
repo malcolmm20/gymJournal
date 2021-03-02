@@ -38,6 +38,12 @@ class GymJournalTest {
     }
 
     @Test
+    void testToJson() {
+        assertTrue(journalA.toJson().similar(journalB.toJson()));
+        assertFalse(journalA.toJson().similar(journalC.toJson()));
+    }
+
+    @Test
     public void testEquals() {
         journalE = new GymJournal();
         assertEquals(journalA, journalA);

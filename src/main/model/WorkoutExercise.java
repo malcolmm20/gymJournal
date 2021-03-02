@@ -26,6 +26,7 @@ public class WorkoutExercise implements Writable {
         return jsonObject;
     }
 
+    // EFFECTS: returns sets array as JSON array
     private JSONArray workoutSetsToJson() {
         JSONArray jsonArray = new JSONArray();
 

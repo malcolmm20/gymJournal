@@ -21,6 +21,12 @@ public class RoutineExerciseTest {
     }
 
     @Test
+    void testToJson() {
+        assertTrue(exerciseA.toJson().similar(exerciseE.toJson()));
+        assertFalse(exerciseA.toJson().similar(exerciseC.toJson()));
+    }
+
+    @Test
     void testEquals() {
         assertTrue(exerciseA.equals(exerciseE) && exerciseE.equals(exerciseA));
         assertTrue(exerciseA.equals(exerciseA));

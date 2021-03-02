@@ -28,6 +28,12 @@ public class RoutineTest {
     }
 
     @Test
+    void testToJson() {
+        assertTrue(routineA.toJson().similar(routineB.toJson()));
+        assertFalse(routineA.toJson().similar(routineC.toJson()));
+    }
+
+    @Test
     void testEquals() {
         assertEquals(routineA, routineA);
         assertEquals(routineA, routineB);

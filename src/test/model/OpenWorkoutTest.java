@@ -31,6 +31,11 @@ public class OpenWorkoutTest {
         addExercises();
     }
 
+    @Test
+    void testToJson() {
+        assertTrue(workoutA.toJson().similar(workoutC.toJson()));
+        assertFalse(workoutA.toJson().similar(workoutB.toJson()));
+    }
 
     @Test
     void testEquals() {
