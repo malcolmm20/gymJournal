@@ -28,3 +28,6 @@ done.
 - As a user, I want to be able to see past workout stats.
 - As a user, I want to be able to see my personal best and one rep max for exercises
  I have performed.
+- As a user, I want to be able to save the contents in my GymJournal to a file.
+- As a user, I want to be able to load the contents of my saved GymJournal into 
+my current GymJournal. 
