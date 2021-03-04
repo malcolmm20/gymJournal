@@ -1,7 +1,11 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,20 +15,25 @@ class GymJournalTest {
     private GymJournal journalC;
     private GymJournal journalD;
     private GymJournal journalE;
+    private GymJournal journalF;
     private RoutineExercise exerciseA;
     private RoutineExercise exerciseB;
     private RoutineExercise exerciseC;
     private RoutineExercise exerciseD;
+    private RoutineExercise exerciseE;
     private Routine routineA;
     private Routine routineB;
     private Routine routineC;
+    private Routine routineD;
     private OpenWorkout workoutA;
     private OpenWorkout workoutB;
     private OpenWorkout workoutC;
+    private OpenWorkout workoutD;
     private WorkoutExercise workoutExerciseA;
     private WorkoutExercise workoutExerciseB;
     private WorkoutExercise workoutExerciseC;
     private WorkoutExercise workoutExerciseD;
+    private WorkoutExercise workoutExerciseE;
     private WorkoutSet setA;
     private WorkoutSet setB;
     private WorkoutSet setC;
@@ -39,8 +48,50 @@ class GymJournalTest {
 
     @Test
     void testToJson() {
-        assertTrue(journalA.toJson().similar(journalB.toJson()));
-        assertFalse(journalA.toJson().similar(journalC.toJson()));
+        JSONObject jsonA = new JSONObject();
+        JSONObject jsonB = new JSONObject();
+        initializeJson(jsonA, jsonB);
+        assertTrue(jsonA.similar(journalF.toJson()));
+        assertFalse(journalF.toJson().similar(jsonB));
+    }
+
+    private void initializeJson(JSONObject jsonA, JSONObject jsonB) {
+        JSONArray jsonWorkoutArray = new JSONArray();
+        JSONArray jsonRoutineArray = new JSONArray();
+        JSONArray workoutSets = new JSONArray();
+        JSONObject routine = new JSONObject();
+        JSONArray routineExercises = new JSONArray();
+        JSONArray workoutExercises = new JSONArray();
+        JSONObject set = new JSONObject();
+        JSONObject routineExercise = new JSONObject();
+        JSONObject workout = new JSONObject();
+        JSONObject workoutExercise = new JSONObject();
+        workout.put("date", LocalDate.now());
+        setsValues(set, workoutSets);
+        workoutExercise.put("sets", workoutSets);
+        workoutExercise.put("exercise name", "e");
+        workoutExercises.put(workoutExercise);
+        workout.put("exercises", workoutExercises);
+        routineExercisesValues(routineExercises, routineExercise);
+        routine.put("exercises", routineExercises);
+        routine.put("name", "d");
+        jsonRoutineArray.put(routine);
+        jsonWorkoutArray.put(workout);
+        jsonA.put("workout history", jsonWorkoutArray);
+        jsonA.put("routines", jsonRoutineArray);
+        jsonB.put("workout history", jsonWorkoutArray);
+    }
+
+    private void setsValues(JSONObject set, JSONArray workoutSets) {
+        set.put("reps", 1);
+        set.put("weight", 200);
+        workoutSets.put(set);
+    }
+
+    private void routineExercisesValues(JSONArray routineExercises, JSONObject routineExercise) {
+        routineExercise.put("sets", 1);
+        routineExercise.put("exercise name", "e");
+        routineExercises.put(routineExercise);
     }
 
     @Test
@@ -268,6 +319,7 @@ class GymJournalTest {
         journalB.addRoutine(routineC);
         journalC.addRoutine(routineA);
         journalC.addRoutine(routineB);
+        journalF.addRoutine(routineD);
     }
 
     private void addWorkouts() {
@@ -279,6 +331,7 @@ class GymJournalTest {
         journalB.addWorkout(workoutC);
         journalC.addWorkout(workoutA);
         journalC.addWorkout(workoutC);
+        journalF.addWorkout(workoutD);
     }
 
     private void addExercises() {
@@ -292,6 +345,7 @@ class GymJournalTest {
         workoutB.addExercise(workoutExerciseB);
         workoutB.addExercise(workoutExerciseD);
         workoutB.addExercise(workoutExerciseD);
+        workoutD.addExercise(workoutExerciseE);
     }
 
     private void addRoutineExercises() {
@@ -302,6 +356,7 @@ class GymJournalTest {
         routineB.addExercise(exerciseB);
         routineC.addExercise(exerciseC);
         routineC.addExercise(exerciseD);
+        routineD.addExercise(exerciseE);
     }
 
     private void addSets() {
@@ -338,6 +393,7 @@ class GymJournalTest {
         workoutExerciseD.addSet(setE);
         workoutExerciseD.addSet(setD);
         workoutExerciseD.addSet(setE);
+        workoutExerciseE.addSet(setE);
     }
 
 
@@ -354,6 +410,7 @@ class GymJournalTest {
         journalA = new GymJournal();
         journalB = new GymJournal();
         journalC = new GymJournal();
+        journalF = new GymJournal();
     }
 
     private void instantiateRoutineExercises() {
@@ -361,18 +418,21 @@ class GymJournalTest {
         exerciseB = new RoutineExercise("bench press", 4);
         exerciseC = new RoutineExercise("bench press", 5);
         exerciseD = new RoutineExercise("leg press", 4);
+        exerciseE = new RoutineExercise("e", 1);
     }
 
     private void instantiateRoutines() {
         routineA = new Routine("routine 1");
         routineB = new Routine("routine 2");
         routineC = new Routine("routine 3");
+        routineD = new Routine("d");
     }
 
     private void instantiateWorkouts() {
         workoutA = new OpenWorkout();
         workoutB = new OpenWorkout();
         workoutC = new OpenWorkout();
+        workoutD = new OpenWorkout();
     }
 
     private void instantiateExercises() {
@@ -380,6 +440,7 @@ class GymJournalTest {
         workoutExerciseB = new WorkoutExercise("barbell back squat");
         workoutExerciseC = new WorkoutExercise("bench press");
         workoutExerciseD = new WorkoutExercise("bench press");
+        workoutExerciseE = new WorkoutExercise("e");
     }
 
     private void instantiateSets() {

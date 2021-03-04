@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,10 +15,12 @@ public class OpenWorkoutTest {
     private OpenWorkout workoutB;
     private OpenWorkout workoutC;
     private OpenWorkout workoutD;
+    private OpenWorkout workoutE;
     private WorkoutExercise workoutExerciseA;
     private WorkoutExercise workoutExerciseB;
     private WorkoutExercise workoutExerciseC;
     private WorkoutExercise workoutExerciseD;
+    private WorkoutExercise workoutExerciseE;
     private WorkoutSet setA;
     private WorkoutSet setB;
     private WorkoutSet setC;
@@ -33,8 +37,27 @@ public class OpenWorkoutTest {
 
     @Test
     void testToJson() {
-        assertTrue(workoutA.toJson().similar(workoutC.toJson()));
-        assertFalse(workoutA.toJson().similar(workoutB.toJson()));
+        JSONObject jsonA = new JSONObject();
+        JSONObject jsonB = new JSONObject();
+        initializeJson(jsonA, jsonB);
+        assertTrue(workoutE.toJson().similar(jsonA));
+        assertFalse(workoutE.toJson().similar(jsonB));
+    }
+
+    private void initializeJson(JSONObject jsonA, JSONObject jsonB) {
+        JSONArray workoutExercises = new JSONArray();
+        JSONArray workoutSets = new JSONArray();
+        JSONObject set = new JSONObject();
+        JSONObject workoutExercise = new JSONObject();
+        jsonA.put("date", LocalDate.now());
+        set.put("reps", 2);
+        set.put("weight", 200);
+        workoutSets.put(set);
+        workoutExercise.put("sets", workoutSets);
+        workoutExercise.put("exercise name", "e");
+        workoutExercises.put(workoutExercise);
+        jsonA.put("exercises", workoutExercises);
+        jsonB.put("date", LocalDate.now());
     }
 
     @Test
@@ -109,10 +132,12 @@ public class OpenWorkoutTest {
         workoutA = new OpenWorkout();
         workoutB = new OpenWorkout();
         workoutC = new OpenWorkout();
+        workoutE = new OpenWorkout();
         workoutExerciseA = new WorkoutExercise("bench press");
         workoutExerciseB = new WorkoutExercise("barbell back squat");
         workoutExerciseC = new WorkoutExercise("leg press");
         workoutExerciseD = new WorkoutExercise("shoulder press");
+        workoutExerciseE = new WorkoutExercise("e");
         setA = new WorkoutSet(10, 100);
         setB = new WorkoutSet(8, 120);
         setC = new WorkoutSet(3, 190);
@@ -138,6 +163,7 @@ public class OpenWorkoutTest {
         workoutExerciseD.addSet(setE);
         workoutExerciseD.addSet(setD);
         workoutExerciseD.addSet(setE);
+        workoutExerciseE.addSet(setE);
     }
 
     private void addExercises() {
@@ -151,5 +177,6 @@ public class OpenWorkoutTest {
         workoutB.addExercise(workoutExerciseB);
         workoutB.addExercise(workoutExerciseD);
         workoutB.addExercise(workoutExerciseD);
+        workoutE.addExercise(workoutExerciseE);
     }
 }
