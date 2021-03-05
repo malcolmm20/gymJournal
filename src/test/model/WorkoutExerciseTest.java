@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +13,7 @@ public class WorkoutExerciseTest {
     private WorkoutExercise workoutExerciseC;
     private WorkoutExercise workoutExerciseD;
     private WorkoutExercise workoutExerciseE;
+    private WorkoutExercise workoutExerciseF;
     private WorkoutSet setA;
     private WorkoutSet setB;
     private WorkoutSet setC;
@@ -29,8 +32,22 @@ public class WorkoutExerciseTest {
 
     @Test
     void testToJson() {
+        JSONObject jsonA = new JSONObject();
+        JSONObject jsonB = new JSONObject();
+        initializeJson(jsonA, jsonB);
         assertTrue(workoutExerciseA.toJson().similar(workoutExerciseC.toJson()));
         assertFalse(workoutExerciseA.toJson().similar(workoutExerciseD.toJson()));
+    }
+
+    private void initializeJson(JSONObject jsonA, JSONObject jsonB) {
+        JSONArray sets = new JSONArray();
+        JSONObject set = new JSONObject();
+        set.put("reps", 10);
+        set.put("weight", 100);
+        sets.put(set);
+        jsonA.put("sets", sets);
+        jsonB.put("sets", sets);
+        jsonA.put("exercise name", "f");
     }
 
     @Test
@@ -83,6 +100,7 @@ public class WorkoutExerciseTest {
         workoutExerciseB = new WorkoutExercise("barbell back squat");
         workoutExerciseC = new WorkoutExercise("bench press");
         workoutExerciseD = new WorkoutExercise("bench press");
+        workoutExerciseF = new WorkoutExercise("f");
         setA = new WorkoutSet(10, 100);
         setB = new WorkoutSet(8, 120);
         setC = new WorkoutSet(3, 190);
@@ -97,6 +115,7 @@ public class WorkoutExerciseTest {
         workoutExerciseA.addSet(setC);
         workoutExerciseA.addSet(setD);
         workoutExerciseA.addSet(setE);
+        workoutExerciseF.addSet(setA);
     }
 
     private void addSetExerciseB() {

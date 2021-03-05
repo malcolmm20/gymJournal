@@ -1,5 +1,6 @@
 package model;
 
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,8 +25,18 @@ public class WorkoutSetTest {
 
     @Test
     void testToJson() {
-        assertTrue(setA.toJson().similar(setC.toJson()));
-        assertFalse(setA.toJson().similar(setB.toJson()));
+        JSONObject jsonA = new JSONObject();
+        JSONObject jsonB = new JSONObject();
+        initializeJson(jsonA, jsonB);
+        assertTrue(setA.toJson().similar(jsonA));
+        assertFalse(setA.toJson().similar(jsonB));
+    }
+
+    private void initializeJson(JSONObject jsonA, JSONObject jsonB) {
+        jsonA.put("weight", 150);
+        jsonA.put("reps", 8);
+        jsonB.put("weight", 200);
+        jsonB.put("reps", 10);
     }
 
     @Test

@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +21,7 @@ public class RoutineTest {
     private Routine routineB;
     private Routine routineC;
     private Routine routineD;
+    private Routine routineE;
 
 
     @BeforeEach
@@ -29,8 +32,22 @@ public class RoutineTest {
 
     @Test
     void testToJson() {
-        assertTrue(routineA.toJson().similar(routineB.toJson()));
-        assertFalse(routineA.toJson().similar(routineC.toJson()));
+        JSONObject jsonRoutineA = new JSONObject();
+        JSONObject jsonRoutineB = new JSONObject();
+        initializeJson(jsonRoutineA, jsonRoutineB);
+        assertTrue(routineE.toJson().similar(jsonRoutineA));
+        assertFalse(routineE.toJson().similar(jsonRoutineB));
+    }
+
+    private void initializeJson(JSONObject jsonRoutineA, JSONObject jsonRoutineB) {
+        JSONObject routineExercise = new JSONObject();
+        JSONArray routineExercises = new JSONArray();
+        routineExercise.put("sets", 4);
+        routineExercise.put("exercise name", "bench press");
+        routineExercises.put(routineExercise);
+        jsonRoutineA.put("exercises", routineExercises);
+        jsonRoutineA.put("name", "e");
+        jsonRoutineB.put("name", "b");
     }
 
     @Test
@@ -88,6 +105,7 @@ public class RoutineTest {
         routineA = new Routine("chest day");
         routineB = new Routine("chest day");
         routineC = new Routine("leg day");
+        routineE = new Routine("e");
         exerciseA = new RoutineExercise("bench press", 4);
         exerciseB = new RoutineExercise("incline bench press", 4);
         exerciseC = new RoutineExercise("squats", 5);
@@ -103,5 +121,6 @@ public class RoutineTest {
         routineB.addExercise(exerciseB);
         routineC.addExercise(exerciseC);
         routineC.addExercise(exerciseD);
+        routineE.addExercise(exerciseA);
     }
 }
