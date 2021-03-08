@@ -166,6 +166,7 @@ public class GymJournal implements Writable {
         return result;
     }
 
+    // EFFECTS: displays one rep maxes in console
     public String displayOneRepMaxes() {
         String result = "";
         String title = "ONE REP MAXES\n-------------\n";
@@ -175,6 +176,7 @@ public class GymJournal implements Writable {
         return title.concat(result);
     }
 
+    // EFFECTS: displays personal bests in console
     public String displayPersonalBests() {
         String result = "";
         String title = "PERSONAL BESTS\n--------------\n";

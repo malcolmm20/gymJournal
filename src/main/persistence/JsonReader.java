@@ -66,6 +66,8 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: gj
+    // EFFECTS: adds workout to workout array in gym journal hash map
     private void addWorkout(HashMap<String, ArrayList<Writable>> gj, JSONObject nextWorkout) {
         OpenWorkout ow = new OpenWorkout();
         LocalDate date = LocalDate.parse(nextWorkout.getString("date"));
@@ -78,6 +80,8 @@ public class JsonReader {
         gj.get("workouts").add(ow);
     }
 
+    // MODIFIES: ow
+    // EFFECTS: adds exercise to workout
     private void addExercise(OpenWorkout ow, JSONObject nextExercise) {
         WorkoutExercise e = new WorkoutExercise(nextExercise.getString("exercise name"));
         JSONArray jsonArray = nextExercise.getJSONArray("sets");
@@ -88,6 +92,8 @@ public class JsonReader {
         ow.addExercise(e);
     }
 
+    // MODIFIES: e
+    // EFFECTS: adds set to exercise
     private void addSet(WorkoutExercise e, JSONObject nextSet) {
         WorkoutSet s = new WorkoutSet(nextSet.getInt("reps"), nextSet.getInt("weight"));
         e.addSet(s);
@@ -103,6 +109,8 @@ public class JsonReader {
         }
     }
 
+    // MODIFIES: gj
+    // EFFECTS: adds routine to routine array in gj hashmap
     private void addRoutine(HashMap<String, ArrayList<Writable>> gj, JSONObject nextRoutine) {
         JSONArray jsonArray = nextRoutine.getJSONArray("exercises");
         Routine r = new Routine(nextRoutine.getString("name"));
@@ -113,6 +121,8 @@ public class JsonReader {
         gj.get("routines").add(r);
     }
 
+    // MODIFIES: r
+    // EFFECTS: adds exercise to routine
     private void addRoutineExercise(Routine r, JSONObject nextRoutineExercise) {
         RoutineExercise re = new RoutineExercise(nextRoutineExercise.getString("exercise name"),
                 nextRoutineExercise.getInt("sets"));
