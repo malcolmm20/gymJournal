@@ -77,7 +77,7 @@ public class JsonReader {
             JSONObject nextExercise = (JSONObject) json;
             addExercise(ow, nextExercise);
         }
-        gj.get("workouts").add(ow);
+        gj.get("workouts").add(0, ow);
     }
 
     // MODIFIES: ow

@@ -4,15 +4,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 //journal that records workouts, exercises
 public class GymJournal implements Writable {
 
-    private final ArrayList<OpenWorkout> workoutHistory;
+    private final List<OpenWorkout> workoutHistory;
     private final HashMap<String, WorkoutSet> personalBests;
     private final HashMap<String, Double> oneRepMaxes;
     private final HashMap<String, Routine> routineHashMap;
@@ -80,7 +77,7 @@ public class GymJournal implements Writable {
     // MODIFIES: this
     // EFFECTS: adds workout to workout history
     public void addWorkout(OpenWorkout openWorkout) {
-        this.workoutHistory.add(openWorkout);
+        this.workoutHistory.add(0, openWorkout);
         updateExercises(openWorkout);
     }
 

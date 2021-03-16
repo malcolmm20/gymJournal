@@ -193,7 +193,7 @@ public class GymJournalApp {
         System.out.println("Which routine will you be doing today?\n "
                 + "Enter the name of the routine as it appears below.\n");
         if (gymJournal.routineString().equals("")) {
-            System.out.println("No routines have been created. Enter 'q' to return to the menu.");
+            System.out.println("No routines have been created. Enter 'r' to return to the menu.");
         } else {
             System.out.print(gymJournal.routineString());
         }

@@ -1,67 +1,51 @@
 {
-    "workout history": [{
-        "date": "2021-03-02",
-        "exercises": [
-            {
+    "workout history": [
+        {
+            "date": "2021-03-11",
+            "exercises": [{
+                "sets": [{
+                    "reps": 1,
+                    "weight": 1
+                }],
+                "exercise name": "print this"
+            }]
+        },
+        {
+            "date": "2021-03-11",
+            "exercises": [{
                 "sets": [
                     {
                         "reps": 10,
-                        "weight": 100
+                        "weight": 10
                     },
                     {
                         "reps": 10,
-                        "weight": 100
+                        "weight": 10
                     }
                 ],
+                "exercise name": "chest press "
+            }]
+        },
+        {
+            "date": "2021-03-11",
+            "exercises": [{
+                "sets": [{
+                    "reps": 10,
+                    "weight": 10
+                }],
                 "exercise name": "bench press"
-            },
-            {
-                "sets": [
-                    {
-                        "reps": 10,
-                        "weight": 100
-                    },
-                    {
-                        "reps": 10,
-                        "weight": 100
-                    }
-                ],
-                "exercise name": "chest fly"
-            },
-            {
-                "sets": [
-                    {
-                        "reps": 10,
-                        "weight": 100
-                    },
-                    {
-                        "reps": 10,
-                        "weight": 100
-                    },
-                    {
-                        "reps": 1,
-                        "weight": 100
-                    }
-                ],
-                "exercise name": "dumbell bench press"
-            }
-        ]
-    }],
-    "routines": [{
-        "exercises": [
-            {
-                "sets": 2,
+            }]
+        },
+        {
+            "date": "2021-03-11",
+            "exercises": [{
+                "sets": [{
+                    "reps": 10,
+                    "weight": 10
+                }],
                 "exercise name": "bench press"
-            },
-            {
-                "sets": 2,
-                "exercise name": "chest fly"
-            },
-            {
-                "sets": 3,
-                "exercise name": "dumbell bench press"
-            }
-        ],
-        "name": "chest day"
-    }]
+            }]
+        }
+    ],
+    "routines": []
 }
