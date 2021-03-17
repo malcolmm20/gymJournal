@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +21,13 @@ public class GymJournalGUI extends JFrame {
 
     public GymJournalGUI() {
         super("Gym Journal");
-        addTitle();
         gj = new GymJournal();
         initializeGraphics();
-        //initializeInteraction();
+        initializeTools();
+    }
+
+    private void initializeTools() {
+
     }
 
     private void addTitle() {
@@ -40,18 +44,13 @@ public class GymJournalGUI extends JFrame {
     // MODIFIES: this
     // EFFECTS:  draws the JFrame window where the GymJournal will operate
     private void initializeGraphics() {
+        addTitle();
         setLayout(new BorderLayout());
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        //createTools();
+        createTools();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
-    // MODIFIES: this
-    // EFFECTS:  initializes a DrawingMouseListener to be used in the JFrame
-    //private void initializeInteraction() {
-    //    DrawingMouseListener dml = new DrawingMouseListener();
-    //    addMouseListener(dml);
-   // }
 }
