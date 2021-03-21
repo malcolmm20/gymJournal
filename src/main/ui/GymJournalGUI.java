@@ -1,9 +1,10 @@
 package ui;
 
-import ui.tools.*;
-
 import javax.swing.*;
-import java.util.HashSet;
+import java.util.HashMap;
+
+import model.GymJournal;
+import ui.screens.*;
 
 public class GymJournalGUI extends JFrame {
     private MenuInterface menu;
@@ -13,7 +14,8 @@ public class GymJournalGUI extends JFrame {
     private CheckOneRepMaxesScreen checkOneRepMaxes;
     private ViewWorkoutHistoryScreen viewWorkoutHistory;
     private JPanel activeScreen;
-    private HashSet<JPanel> setOfScreens;
+    private HashMap<String, JPanel> screens;
+    private GymJournal gj;
 
     public GymJournalGUI() {
         super("Gym Journal");
@@ -21,17 +23,33 @@ public class GymJournalGUI extends JFrame {
         setLocationRelativeTo(null);
         initializeScreens();
         activeScreen = menu;
+        gj = new GymJournal();
     }
 
+    // MODIFIES: screens hashmap, screens being initialized
+    // EFFECTS: initializes screens, adds them to screens hashmap
     private void initializeScreens() {
-        menu = new MenuInterface();
-        addWorkout = new AddWorkoutInterface();
-        addRoutine = new AddRoutineInterface();
-        // initialize and add to set of screens
-        // when button is clicked make screen visible.
-        // mehtod in menu to set active screen invisible and set all chosen screen to visible
-        // return button
-        // add image
+        menu = new MenuInterface(this, gj);
+        screens.put("menu", menu);
+        addWorkout = new AddWorkoutInterface(this, gj);
+        screens.put("workout", addWorkout);
+        addRoutine = new AddRoutineInterface(this, gj);
+        screens.put("routine", addRoutine);
+        checkPersonalBests = new CheckPersonalBestsScreen(this, gj);
+        screens.put("pb", checkPersonalBests);
+        checkOneRepMaxes = new CheckOneRepMaxesScreen(this, gj);
+        screens.put("orm", checkOneRepMaxes);
+        viewWorkoutHistory = new ViewWorkoutHistoryScreen(this, gj);
+        screens.put("history", viewWorkoutHistory);
+    }
+
+    // MODIFIES: activescreen, screenKey screen
+    // EFFECTS: sets active screen to invisible, makes screen corresponding to screenkey
+    // the active screen, sets it to visible
+    public void showScreen(String screenKey) {
+        activeScreen.setVisible(false);
+        activeScreen = screens.get(screenKey);
+        activeScreen.setVisible(true);
     }
 
 }

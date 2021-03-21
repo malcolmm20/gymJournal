@@ -1,4 +1,4 @@
-package ui;
+package ui.screens;
 
 import model.GymJournal;
 import model.OpenWorkout;
@@ -6,22 +6,20 @@ import model.Routine;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import persistence.Writable;
-import ui.tools.*;
+import ui.GymJournalGUI;
+import ui.screens.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 // class for gym journal graphical user interface
 // modelled after simple drawing player gui
 public class MenuInterface extends JPanel {
-
+    private GymJournalGUI gui;
+    private GymJournal gj;
     private static final String JSON_STORE = "./data/gymJournalLog.json";
     public static final int WIDTH = 700;
     public static final int HEIGHT = 900;
@@ -29,14 +27,16 @@ public class MenuInterface extends JPanel {
     private JsonReader reader;
     private JsonWriter writer;
 
-    private GymJournal gj;
 
-    public MenuInterface() {
+    public MenuInterface(GymJournalGUI gui, GymJournal gj) {
         super();
-        gj = new GymJournal();
+        this.gui = gui;
+        this.gj = gj;
         initializeGraphics();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds welcome image and message to menu screen
     private void addTitle() {
         JPanel titlePanel = new JPanel();
         JLabel title = new JLabel();
@@ -58,6 +58,7 @@ public class MenuInterface extends JPanel {
         setVisible(true);
     }
 
+    // EFFECTS: instantiates buttons with actionlisteners
     private void createTools() {
         JPanel toolArea = new JPanel();
         toolArea.setLayout(new GridLayout(0,1));
@@ -65,13 +66,19 @@ public class MenuInterface extends JPanel {
         add(toolArea, BorderLayout.SOUTH);
 
         JButton addRoutine = new JButton("Add Routine");
-        toolArea.add(addRoutine);
-        AddWorkoutTool addWorkoutTool = new AddWorkoutTool(this, toolArea);
-        CheckOneRepMaxTool checkOneRepMaxTool = new CheckOneRepMaxTool(this, toolArea);
-        CheckPersonalBestsTool checkPersonalBestsTool = new CheckPersonalBestsTool(this, toolArea);
-        LoadJournalTool loadJournalTool = new LoadJournalTool(this, toolArea);
-        SaveJournalTool saveJournalTool = new SaveJournalTool(this, toolArea);
-        ViewWorkoutHistoryTool viewWorkoutHistoryTool = new ViewWorkoutHistoryTool(this, toolArea);
+        addRoutine.addActionListener(e -> gui.showScreen("routine"));
+        JButton addWorkout = new JButton("Add Workout");
+        addWorkout.addActionListener(e -> gui.showScreen("workout"));
+        JButton checkOneRepMaxes = new JButton("Check One Rep Maxes");
+        checkOneRepMaxes.addActionListener(e -> gui.showScreen("orm"));
+        JButton checkPersonalBests = new JButton("Check Personal Bests");
+        checkPersonalBests.addActionListener(e -> gui.showScreen("pb"));
+        JButton viewWorkoutHistory = new JButton("View Workout History");
+        viewWorkoutHistory.addActionListener(e -> gui.showScreen("history"));
+        JButton saveJournal = new JButton("Save Gym Journal");
+        saveJournal.addActionListener(e -> saveGymJournal());
+        JButton loadJournal = new JButton("Load Gym Journal");
+        loadJournal.addActionListener(e -> loadGymJournal());
     }
 
 
