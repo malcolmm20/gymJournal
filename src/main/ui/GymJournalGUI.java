@@ -1,56 +1,37 @@
 package ui;
 
-import model.GymJournal;
+import ui.tools.*;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
-// class for gym journal graphical user interface
-// modelled after simple drawing player gui
 public class GymJournalGUI extends JFrame {
-
-    public static final int WIDTH = 700;
-    public static final int HEIGHT = 900;
-
-    private GymJournal gj;
+    private MenuInterface menu;
+    private AddWorkoutInterface addWorkout;
+    private AddRoutineInterface addRoutine;
+    private CheckPersonalBestsScreen checkPersonalBests;
+    private CheckOneRepMaxesScreen checkOneRepMaxes;
+    private ViewWorkoutHistoryScreen viewWorkoutHistory;
+    private JPanel activeScreen;
+    private HashSet<JPanel> setOfScreens;
 
     public GymJournalGUI() {
         super("Gym Journal");
-        gj = new GymJournal();
-        initializeGraphics();
-        initializeTools();
-    }
-
-    private void initializeTools() {
-
-    }
-
-    private void addTitle() {
-        JPanel titlePanel = new JPanel();
-        JLabel title = new JLabel();
-        titlePanel.setSize(200, 80);
-        titlePanel.setOpaque(false);
-        titlePanel.setLocation(50,50);
-        title.setIcon(new ImageIcon("./data/barbell.png"));
-        titlePanel.add(title);
-        add(titlePanel);
-    }
-
-    // MODIFIES: this
-    // EFFECTS:  draws the JFrame window where the GymJournal will operate
-    private void initializeGraphics() {
-        addTitle();
-        setLayout(new BorderLayout());
-        setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        createTools();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setVisible(true);
+        initializeScreens();
+        activeScreen = menu;
+    }
+
+    private void initializeScreens() {
+        menu = new MenuInterface();
+        addWorkout = new AddWorkoutInterface();
+        addRoutine = new AddRoutineInterface();
+        // initialize and add to set of screens
+        // when button is clicked make screen visible.
+        // mehtod in menu to set active screen invisible and set all chosen screen to visible
+        // return button
+        // add image
     }
 
 }

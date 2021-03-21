@@ -1,14 +1,29 @@
 package ui.tools;
 
-import ui.GymJournalGUI;
+import ui.MenuInterface;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CheckOneRepMaxTool {
-    private GymJournalGUI gui;
+public class CheckOneRepMaxTool extends Tool {
+
+    public CheckOneRepMaxTool(MenuInterface gui, JComponent parent) {
+        super(gui, parent);
+    }
 
     private void oneRepMaxInterface() {
+    }
+
+    @Override
+    protected void createButton(JComponent parent) {
+        button = new JButton("Check One Rep Maxes");
+        addToParent(parent);
+    }
+
+    @Override
+    protected void addListener() {
+        new CheckOneRepMaxToolClickHandler();
     }
 
     private class CheckOneRepMaxToolClickHandler implements ActionListener {

@@ -1,12 +1,27 @@
 package ui.tools;
 
-import ui.GymJournalGUI;
+import ui.MenuInterface;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddWorkoutTool {
-    private GymJournalGUI gui;
+public class AddWorkoutTool extends Tool {
+
+    public AddWorkoutTool(MenuInterface gui, JComponent parent) {
+        super(gui, parent);
+    }
+
+    @Override
+    protected void createButton(JComponent parent) {
+        button = new JButton("Add Workout");
+        addToParent(parent);
+    }
+
+    @Override
+    protected void addListener() {
+        new AddWorkoutToolClickHandler();
+    }
 
     private void addWorkoutInterface() {
     }

@@ -1,6 +1,6 @@
 package ui.tools;
 
-import ui.GymJournalGUI;
+import ui.MenuInterface;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -8,15 +8,12 @@ import java.awt.event.MouseEvent;
 public abstract class Tool {
 
     protected JButton button;
-    protected GymJournalGUI gui;
+    protected MenuInterface gui;
 
-    private boolean active;
-
-    public Tool(GymJournalGUI gui, JComponent parent) {
+    public Tool(MenuInterface gui, JComponent parent) {
         this.gui = gui;
         createButton(parent);
         addToParent(parent);
-        active = false;
         addListener();
     }
 
@@ -27,21 +24,6 @@ public abstract class Tool {
         button.setFocusPainted(true);
         button.setContentAreaFilled(true);
         return button;
-    }
-
-    // getters
-    public boolean isActive() {
-        return active;
-    }
-
-    // EFFECTS: sets this tool's active field to true
-    public void activate() {
-        active = true;
-    }
-
-    // EFFECTS: sets this tool's active field to false
-    public void deactivate() {
-        active = false;
     }
 
     // EFFECTS: creates button to activate tool
