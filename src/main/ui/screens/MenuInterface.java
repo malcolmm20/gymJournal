@@ -17,22 +17,18 @@ import java.util.HashMap;
 
 // class for gym journal graphical user interface
 // modelled after simple drawing player gui
-public class MenuInterface extends JPanel {
-    private GymJournalGUI gui;
-    private GymJournal gj;
+public class MenuInterface extends Screen {
     private static final String JSON_STORE = "./data/gymJournalLog.json";
-    public static final int WIDTH = 700;
-    public static final int HEIGHT = 900;
 
     private JsonReader reader;
     private JsonWriter writer;
 
 
     public MenuInterface(GymJournalGUI gui, GymJournal gj) {
-        super();
-        this.gui = gui;
-        this.gj = gj;
-        initializeGraphics();
+        super(gui, gj);
+        addTitle();
+        reader = new JsonReader(JSON_STORE);
+        writer = new JsonWriter(JSON_STORE);
     }
 
     // MODIFIES: this
@@ -40,45 +36,47 @@ public class MenuInterface extends JPanel {
     private void addTitle() {
         JPanel titlePanel = new JPanel();
         JLabel title = new JLabel();
-        titlePanel.setSize(200, 80);
+        titlePanel.setSize(700, 700);
         titlePanel.setOpaque(false);
-        titlePanel.setLocation(50,50);
         title.setIcon(new ImageIcon("./data/barbell.png"));
         titlePanel.add(title);
-        add(titlePanel);
-    }
-
-    // MODIFIES: this
-    // EFFECTS:  draws the JFrame window where the GymJournal will operate
-    private void initializeGraphics() {
-        addTitle();
-        setLayout(new BorderLayout());
-        setMinimumSize(new Dimension(WIDTH, HEIGHT));
-        createTools();
-        setVisible(true);
+        add(titlePanel, BorderLayout.CENTER);
     }
 
     // EFFECTS: instantiates buttons with actionlisteners
-    private void createTools() {
+    @Override
+    protected void createTools() {
         JPanel toolArea = new JPanel();
         toolArea.setLayout(new GridLayout(0,1));
         toolArea.setSize(new Dimension(0, 0));
         add(toolArea, BorderLayout.SOUTH);
+        addButtons(toolArea);
+    }
 
+    // MODIFIES: toolArea
+    // EFFECTS: creates and adds buttons to area
+    private void addButtons(JComponent toolArea) {
         JButton addRoutine = new JButton("Add Routine");
-        addRoutine.addActionListener(e -> gui.showScreen("routine"));
+        addRoutine.addActionListener(e -> cl.show(gui,"routine"));
+        toolArea.add(addRoutine);
         JButton addWorkout = new JButton("Add Workout");
-        addWorkout.addActionListener(e -> gui.showScreen("workout"));
+        addWorkout.addActionListener(e -> cl.show(gui,"workout"));
+        toolArea.add(addWorkout);
         JButton checkOneRepMaxes = new JButton("Check One Rep Maxes");
-        checkOneRepMaxes.addActionListener(e -> gui.showScreen("orm"));
+        checkOneRepMaxes.addActionListener(e -> cl.show(gui,"orm"));
+        toolArea.add(checkOneRepMaxes);
         JButton checkPersonalBests = new JButton("Check Personal Bests");
-        checkPersonalBests.addActionListener(e -> gui.showScreen("pb"));
+        checkPersonalBests.addActionListener(e -> cl.show(gui,"pb"));
+        toolArea.add(checkPersonalBests);
         JButton viewWorkoutHistory = new JButton("View Workout History");
-        viewWorkoutHistory.addActionListener(e -> gui.showScreen("history"));
+        viewWorkoutHistory.addActionListener(e -> cl.show(gui,"history"));
+        toolArea.add(viewWorkoutHistory);
         JButton saveJournal = new JButton("Save Gym Journal");
         saveJournal.addActionListener(e -> saveGymJournal());
+        toolArea.add(saveJournal);
         JButton loadJournal = new JButton("Load Gym Journal");
         loadJournal.addActionListener(e -> loadGymJournal());
+        toolArea.add(loadJournal);
     }
 
 
