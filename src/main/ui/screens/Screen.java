@@ -25,7 +25,6 @@ public abstract class Screen extends JPanel {
         setLayout(new BorderLayout());
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
         createTools();
-        setVisible(false);
     }
 
     protected void createTools() {

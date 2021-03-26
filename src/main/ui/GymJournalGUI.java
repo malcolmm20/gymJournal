@@ -10,6 +10,7 @@ import ui.screens.*;
 public class GymJournalGUI extends JPanel {
     private static final int WIDTH = 700;
     private static final int HEIGHT = 900;
+    private HashMap<String, JPanel> screenMap;
     private JFrame display;
     private JPanel menu;
     private JPanel addWorkout;
@@ -18,19 +19,33 @@ public class GymJournalGUI extends JPanel {
     private JPanel checkOneRepMaxes;
     private JPanel viewWorkoutHistory;
     private JPanel activeScreen;
-    private HashMap<String, JPanel> screens;
     private GymJournal gj;
 
     public GymJournalGUI() {
         super();
         display = new JFrame("myGymJournal");
         gj = new GymJournal();
-        screens = new HashMap<>();
+        screenMap = new HashMap<>();
         display.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new CardLayout());
         initializeScreens();
         activeScreen = menu;
         initializeGraphics();
+        addToHashMap();
+    }
+
+    private void addToHashMap() {
+        screenMap.put("menu", menu);
+        screenMap.put("workout", addWorkout);
+        screenMap.put("routine", addRoutine);
+        screenMap.put("pb", checkPersonalBests);
+        screenMap.put("orm", checkOneRepMaxes);
+        screenMap.put("history", viewWorkoutHistory);
+
+    }
+
+    public HashMap<String, JPanel> getScreenMap() {
+        return screenMap;
     }
 
 

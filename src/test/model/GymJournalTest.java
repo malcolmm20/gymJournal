@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -44,6 +46,15 @@ class GymJournalTest {
     void setUp() {
         instantiate();
         add();
+    }
+
+    @Test
+    void testGetWorkoutHistory() {
+        List<OpenWorkout> list = new ArrayList<>();
+        list.add(workoutA);
+        list.add(workoutB);
+        list.add(workoutC);
+        assertEquals(list, journalA.getWorkoutHistory());
     }
 
     @Test

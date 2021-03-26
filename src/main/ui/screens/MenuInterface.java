@@ -69,7 +69,7 @@ public class MenuInterface extends Screen {
         checkPersonalBests.addActionListener(e -> cl.show(gui,"pb"));
         toolArea.add(checkPersonalBests);
         JButton viewWorkoutHistory = new JButton("View Workout History");
-        viewWorkoutHistory.addActionListener(e -> cl.show(gui,"history"));
+        viewWorkoutHistory.addActionListener(e -> viewHistoryMethod());
         toolArea.add(viewWorkoutHistory);
         JButton saveJournal = new JButton("Save Gym Journal");
         saveJournal.addActionListener(e -> saveGymJournal());
@@ -77,6 +77,11 @@ public class MenuInterface extends Screen {
         JButton loadJournal = new JButton("Load Gym Journal");
         loadJournal.addActionListener(e -> loadGymJournal());
         toolArea.add(loadJournal);
+    }
+
+    private void viewHistoryMethod() {
+        ((ViewWorkoutHistoryScreen)gui.getScreenMap().get("history")).updateList();
+        cl.show(gui,"history");
     }
 
 

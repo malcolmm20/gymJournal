@@ -9,8 +9,6 @@ import java.awt.event.ActionListener;
 
 public class AddRoutineInterface extends Screen {
 
-
-
     public AddRoutineInterface(GymJournalGUI gui, GymJournal gj) {
         super(gui, gj);
     }

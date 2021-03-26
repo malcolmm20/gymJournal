@@ -43,6 +43,18 @@ public class GymJournal implements Writable {
         return jsonArray;
     }
 
+    public List<OpenWorkout> getWorkoutHistory() {
+        return workoutHistory;
+    }
+
+    public HashMap<String, Double> getOneRepMaxes() {
+        return oneRepMaxes;
+    }
+
+    public HashMap<String, WorkoutSet> getPersonalBests() {
+        return personalBests;
+    }
+
     // EFFECTS: returns routine hashmap as JSON array
     private JSONArray routineHashMapToJson() {
         JSONArray jsonArray = new JSONArray();
