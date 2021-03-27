@@ -12,6 +12,15 @@ public class WorkoutRenderer extends JLabel implements ListCellRenderer<OpenWork
                                                      boolean isSelected, boolean cellHasFocus) {
 
         setText(workout.getDate().toString() + " workout");
+
+        if (isSelected) {
+            setBackground(list.getSelectionBackground());
+            setForeground(list.getSelectionForeground());
+        } else {
+            setBackground(list.getBackground());
+            setForeground(list.getForeground());
+        }
+
         return this;
     }
 

@@ -63,10 +63,10 @@ public class MenuInterface extends Screen {
         addWorkout.addActionListener(e -> cl.show(gui,"workout"));
         toolArea.add(addWorkout);
         JButton checkOneRepMaxes = new JButton("Check One Rep Maxes");
-        checkOneRepMaxes.addActionListener(e -> cl.show(gui,"orm"));
+        checkOneRepMaxes.addActionListener(e -> checkOneRepMaxesMethod());
         toolArea.add(checkOneRepMaxes);
         JButton checkPersonalBests = new JButton("Check Personal Bests");
-        checkPersonalBests.addActionListener(e -> cl.show(gui,"pb"));
+        checkPersonalBests.addActionListener(e -> checkPersonalBestsMethod());
         toolArea.add(checkPersonalBests);
         JButton viewWorkoutHistory = new JButton("View Workout History");
         viewWorkoutHistory.addActionListener(e -> viewHistoryMethod());
@@ -82,6 +82,16 @@ public class MenuInterface extends Screen {
     private void viewHistoryMethod() {
         ((ViewWorkoutHistoryScreen)gui.getScreenMap().get("history")).updateList();
         cl.show(gui,"history");
+    }
+
+    private void checkPersonalBestsMethod() {
+        ((CheckPersonalBestsScreen)gui.getScreenMap().get("pb")).updateList();
+        cl.show(gui,"pb");
+    }
+
+    private void checkOneRepMaxesMethod() {
+        ((CheckOneRepMaxesScreen)gui.getScreenMap().get("orm")).updateList();
+        cl.show(gui,"orm");
     }
 
 

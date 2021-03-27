@@ -89,8 +89,8 @@ public class WorkoutExercise implements Writable {
     public String toString() {
         String exerciseSet = "";
         for (WorkoutSet set : sets) {
-            exerciseSet = exerciseSet.concat(set.toString() + "\n");
+            exerciseSet = exerciseSet.concat(set.toString() + ".\n");
         }
-        return (this.name + "\n" + exerciseSet);
+        return (this.name + ".\n" + exerciseSet);
     }
 }

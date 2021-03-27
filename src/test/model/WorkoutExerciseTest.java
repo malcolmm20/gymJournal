@@ -85,8 +85,8 @@ public class WorkoutExerciseTest {
 
     @Test
     void testToString() {
-        assertEquals("barbell back squat\n" + setA.toString()
-                + "\n" + setB.toString() + "\n", workoutExerciseB.toString());
+        assertEquals("barbell back squat.\n" + setA.toString()
+                + ".\n" + setB.toString() + ".\n", workoutExerciseB.toString());
     }
 
     @Test

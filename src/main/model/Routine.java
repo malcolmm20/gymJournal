@@ -77,8 +77,8 @@ public class Routine implements Writable {
     public String toString() {
         String result = "";
         for (RoutineExercise exercise : exercises) {
-            result = result.concat(exercise.toString() + "\n");
+            result = result.concat(exercise.toString() + ".\n");
         }
-        return (this.name.concat("\n" + result));
+        return (this.name.concat(".\n" + result));
     }
 }

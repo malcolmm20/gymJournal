@@ -18,17 +18,18 @@ public class CheckOneRepMaxesScreen extends Screen {
 
     public CheckOneRepMaxesScreen(GymJournalGUI gui, GymJournal gj) {
         super(gui, gj);
-        updateList();
+        makeList();
         makeScrollPane();
     }
 
+
     private void makeScrollPane() {
         JScrollPane listScroller = new JScrollPane(list);
-        listScroller.setPreferredSize(new Dimension(WIDTH / 2, HEIGHT));
+        listScroller.setPreferredSize(new Dimension(WIDTH, HEIGHT));
         add(listScroller, BorderLayout.WEST);
     }
 
-    public void updateList() {
+    public void makeList() {
         HashMap<String, Double> ormMap = gj.getOneRepMaxes();
         String[] oneRepMaxArray = new String[ormMap.size()];
         int i = 0;
@@ -40,5 +41,17 @@ public class CheckOneRepMaxesScreen extends Screen {
         list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         list.setLayoutOrientation(JList.VERTICAL);
         list.setVisibleRowCount(-1);
+    }
+
+    public void updateList() {
+        HashMap<String, Double> ormMap = gj.getOneRepMaxes();
+        String[] oneRepMaxArray = new String[ormMap.size()];
+        int i = 0;
+        for (Map.Entry<String, Double> entry : ormMap.entrySet()) {
+            oneRepMaxArray[i] = entry.getKey() + ": " + entry.getValue() + "lbs";
+            i++;
+        }
+        list.setListData(oneRepMaxArray);
+        list.ensureIndexIsVisible(list.getModel().getSize());
     }
 }

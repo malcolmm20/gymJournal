@@ -91,12 +91,12 @@ public class OpenWorkoutTest {
     @Test
     void testToString() {
         assertEquals(workoutA.getDate() + " workout.\n"
-                + workoutExerciseA.toString() + "\n" + workoutExerciseB.toString()
-                + "\n" + workoutExerciseC.toString() + "\n", workoutA.toString());
+                + workoutExerciseA.toString() + ".\n" + workoutExerciseB.toString()
+                + ".\n" + workoutExerciseC.toString() + ".\n", workoutA.toString());
         assertEquals(workoutB.getDate() + " workout.\n"
-                + workoutExerciseA.toString() + "\n" + workoutExerciseB.toString()
-                + "\n" + workoutExerciseD.toString() + "\n" + workoutExerciseD.toString()
-                + "\n", workoutB.toString());
+                + workoutExerciseA.toString() + ".\n" + workoutExerciseB.toString()
+                + ".\n" + workoutExerciseD.toString() + ".\n" + workoutExerciseD.toString()
+                + ".\n", workoutB.toString());
     }
 
     @Test

@@ -81,7 +81,7 @@ public class OpenWorkout implements Writable {
     public String toString() {
         String exerciseString = "";
         for (WorkoutExercise workoutExercise : workoutExercises) {
-            exerciseString = exerciseString.concat(workoutExercise.toString() + "\n");
+            exerciseString = exerciseString.concat(workoutExercise.toString() + ".\n");
         }
 
         return (this.date + " workout.\n" + exerciseString);

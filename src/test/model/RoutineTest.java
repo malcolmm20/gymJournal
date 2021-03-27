@@ -90,10 +90,10 @@ public class RoutineTest {
 
     @Test
     void testToString() {
-        assertEquals(routineA.getName().concat("\n" + exerciseA.toString()
-                + "\n" + exerciseB.toString() + "\n"), routineA.toString());
-        assertEquals(routineC.getName().concat("\n" + exerciseC.toString()
-                + "\n" + exerciseD.toString() + "\n"), routineC.toString());
+        assertEquals(routineA.getName().concat(".\n" + exerciseA.toString()
+                + ".\n" + exerciseB.toString() + ".\n"), routineA.toString());
+        assertEquals(routineC.getName().concat(".\n" + exerciseC.toString()
+                + ".\n" + exerciseD.toString() + ".\n"), routineC.toString());
     }
 
     // MODIFIES: this
