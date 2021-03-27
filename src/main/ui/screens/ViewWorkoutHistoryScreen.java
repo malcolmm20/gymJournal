@@ -2,19 +2,16 @@ package ui.screens;
 
 import model.GymJournal;
 import model.OpenWorkout;
-import persistence.JsonReader;
-import persistence.JsonWriter;
 import ui.GymJournalGUI;
+import ui.screens.renderers.WorkoutRenderer;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Vector;
 
+// jpanel that displays list of past workouts
 public class ViewWorkoutHistoryScreen extends Screen {
     private JLabel text;
     private JList list;
@@ -35,8 +32,11 @@ public class ViewWorkoutHistoryScreen extends Screen {
 
     private void makeJLabel() {
         text = new JLabel();
+        text.setFont(new Font("", Font.PLAIN, 20));
+        text.setHorizontalAlignment(SwingConstants.LEFT);
+        text.setVerticalAlignment(SwingConstants.NORTH);
         text.setMinimumSize(new Dimension(WIDTH / 2, HEIGHT));
-        add(text, BorderLayout.EAST);
+        add(text, BorderLayout.CENTER);
     }
 
     public void updateList() {

@@ -134,26 +134,26 @@ class GymJournalTest {
 
     @Test
     public void testRoutineString() {
-        assertEquals("routine 2\n" +
-                "bench press: 4 sets\n" +
-                "bench press: 4 sets\n" +
+        assertEquals("routine 2.\n" +
+                "bench press: 4 sets.\n" +
+                "bench press: 4 sets.\n" +
                 "\n" +
-                "routine 3\n" +
-                "bench press: 5 sets\n" +
-                "leg press: 4 sets\n" +
+                "routine 3.\n" +
+                "bench press: 5 sets.\n" +
+                "leg press: 4 sets.\n" +
                 "\n" +
-                "routine 1\n" +
-                "bench press: 4 sets\n" +
-                "bench press: 4 sets\n" +
-                "bench press: 5 sets\n\n", journalA.routineString());
-        assertEquals("routine 2\n" +
-                "bench press: 4 sets\n" +
-                "bench press: 4 sets\n" +
+                "routine 1.\n" +
+                "bench press: 4 sets.\n" +
+                "bench press: 4 sets.\n" +
+                "bench press: 5 sets.\n\n", journalA.routineString());
+        assertEquals("routine 2.\n" +
+                "bench press: 4 sets.\n" +
+                "bench press: 4 sets.\n" +
                 "\n" +
-                "routine 1\n" +
-                "bench press: 4 sets\n" +
-                "bench press: 4 sets\n" +
-                "bench press: 5 sets\n" +
+                "routine 1.\n" +
+                "bench press: 4 sets.\n" +
+                "bench press: 4 sets.\n" +
+                "bench press: 5 sets.\n" +
                 "\n", journalC.routineString());
     }
 

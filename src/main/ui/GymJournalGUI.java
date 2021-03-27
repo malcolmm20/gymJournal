@@ -7,6 +7,7 @@ import java.util.HashMap;
 import model.GymJournal;
 import ui.screens.*;
 
+// a JPanel that the GUI will operate in
 public class GymJournalGUI extends JPanel {
     private static final int WIDTH = 700;
     private static final int HEIGHT = 900;
@@ -34,6 +35,8 @@ public class GymJournalGUI extends JPanel {
         addToHashMap();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds screens to hashmaps so they can be easily referenced
     private void addToHashMap() {
         screenMap.put("menu", menu);
         screenMap.put("workout", addWorkout);
@@ -41,9 +44,9 @@ public class GymJournalGUI extends JPanel {
         screenMap.put("pb", checkPersonalBests);
         screenMap.put("orm", checkOneRepMaxes);
         screenMap.put("history", viewWorkoutHistory);
-
     }
 
+    // EFFECTS: returns screen hash map
     public HashMap<String, JPanel> getScreenMap() {
         return screenMap;
     }

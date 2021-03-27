@@ -7,7 +7,6 @@ import persistence.JsonReader;
 import persistence.JsonWriter;
 import persistence.Writable;
 import ui.GymJournalGUI;
-import ui.screens.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,7 +56,7 @@ public class MenuInterface extends Screen {
     // EFFECTS: creates and adds buttons to area
     private void addButtons(JComponent toolArea) {
         JButton addRoutine = new JButton("Add Routine");
-        addRoutine.addActionListener(e -> cl.show(gui,"routine"));
+        addRoutine.addActionListener(e -> routineMethod());
         toolArea.add(addRoutine);
         JButton addWorkout = new JButton("Add Workout");
         addWorkout.addActionListener(e -> cl.show(gui,"workout"));
@@ -79,16 +78,25 @@ public class MenuInterface extends Screen {
         toolArea.add(loadJournal);
     }
 
+    // EFFECTS: shows routine screen, and pop up for input
+    private void routineMethod() {
+        cl.show(gui,"routine");
+        ((AddRoutineInterface)gui.getScreenMap().get("routine")).showPopUp();
+    }
+
+    // EFFECTS: updates history list, shows history screen
     private void viewHistoryMethod() {
         ((ViewWorkoutHistoryScreen)gui.getScreenMap().get("history")).updateList();
         cl.show(gui,"history");
     }
 
+    // EFFECTS: updates personal bests list, shows personal bests screen
     private void checkPersonalBestsMethod() {
         ((CheckPersonalBestsScreen)gui.getScreenMap().get("pb")).updateList();
         cl.show(gui,"pb");
     }
 
+    // EFFECTS: updates one rep max list, shows one rep max screen
     private void checkOneRepMaxesMethod() {
         ((CheckOneRepMaxesScreen)gui.getScreenMap().get("orm")).updateList();
         cl.show(gui,"orm");
@@ -103,7 +111,7 @@ public class MenuInterface extends Screen {
             HashMap<String, ArrayList<Writable>> gjHashMap = reader.read();
             loadRoutines(gjHashMap.get("routines"));
             loadWorkouts(gjHashMap.get("workouts"));
-            //System.out.println("Loaded Gym Journal from " + JSON_STORE);
+            JOptionPane.showMessageDialog(this, "Loaded GymJournal from " + JSON_STORE);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Unable to read from file " + JSON_STORE);
         }
@@ -134,7 +142,7 @@ public class MenuInterface extends Screen {
             writer.open();
             writer.write(gj);
             writer.close();
-            //System.out.println("Saved Gym Journal to " + JSON_STORE);
+            JOptionPane.showMessageDialog(this, "Saved GymJournal to " + JSON_STORE);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Unable to read from file " + JSON_STORE);
         }

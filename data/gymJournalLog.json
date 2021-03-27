@@ -30,5 +30,21 @@
             }
         ]
     }],
-    "routines": []
+    "routines": [{
+        "exercises": [
+            {
+                "sets": 2,
+                "exercise name": "bench press"
+            },
+            {
+                "sets": 2,
+                "exercise name": "tricep pushdown"
+            },
+            {
+                "sets": 3,
+                "exercise name": "incline bench press"
+            }
+        ],
+        "name": "chest day"
+    }]
 }
