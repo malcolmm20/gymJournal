@@ -45,8 +45,8 @@ public class SelectRoutine extends Screen {
     }
 
     public void selectRoutineMethod() {
-        AddRoutineWorkoutInterface addRoutineWorkout = new AddRoutineWorkoutInterface((Routine)list.getSelectedValue(),
-                gui, gj);
+        ((AddRoutineWorkoutInterface)gui.getScreenMap().get("routine workout")).updateForm(
+                (Routine)list.getSelectedValue());
         cl.show(gui,"routine workout");
     }
 
@@ -94,7 +94,6 @@ public class SelectRoutine extends Screen {
         String paragraph = "<html>".concat(s);
         paragraph.concat("</html>");
         paragraph = paragraph.replace(".", "<br/>");
-        System.out.println(paragraph);
         return paragraph;
     }
 

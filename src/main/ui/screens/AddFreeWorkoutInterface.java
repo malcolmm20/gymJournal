@@ -17,4 +17,6 @@ public class AddFreeWorkoutInterface extends Screen {
     public AddFreeWorkoutInterface(GymJournalGUI gui, GymJournal gj) {
         super(gui, gj);
     }
+
+
 }

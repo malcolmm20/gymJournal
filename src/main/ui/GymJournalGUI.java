@@ -75,7 +75,7 @@ public class GymJournalGUI extends JPanel {
         add(addFreeWorkout, "free workout");
         selectRoutine = new SelectRoutine(this, gj);
         add(selectRoutine, "select routine");
-        addRoutineWorkout = new AddRoutineInterface(this, gj);
+        addRoutineWorkout = new AddRoutineWorkoutInterface(this, gj);
         add(addRoutineWorkout, "routine workout");
         addRoutine = new AddRoutineInterface(this, gj);
         add(addRoutine, "routine");
@@ -83,7 +83,7 @@ public class GymJournalGUI extends JPanel {
         add(checkPersonalBests, "pb");
         checkOneRepMaxes = new CheckOneRepMaxesScreen(this, gj);
         add(checkOneRepMaxes, "orm");
-        viewWorkoutHistory = new SelectRoutine(this, gj);
+        viewWorkoutHistory = new ViewWorkoutHistoryScreen(this, gj);
         add(viewWorkoutHistory, "history");
     }
 

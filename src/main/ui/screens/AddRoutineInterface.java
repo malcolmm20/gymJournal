@@ -75,14 +75,42 @@ public class AddRoutineInterface extends InputInterface {
 
     // EFFECTS: processes textfield data
     private void processEntry() {
-        Routine routine = new Routine(fields.get(0).getText());
-        for (int i = 1; i <= numExercises * 2; i = i + 2) {
-            RoutineExercise exercise = new RoutineExercise(fields.get(i).getText(),
-                    Integer.parseInt(fields.get(i + 1).getText()));
-            routine.addExercise(exercise);
+        if (testEmpty()) {
+            JOptionPane.showMessageDialog(this, "There cannot be any empty fields");
+        } else if (!testNonIntegers()) {
+            JOptionPane.showMessageDialog(this, "There are non-integers in integer fields");
+        } else {
+            Routine routine = new Routine(fields.get(0).getText());
+            for (int i = 1; i <= numExercises * 2; i = i + 2) {
+                RoutineExercise exercise = new RoutineExercise(fields.get(i).getText(),
+                        Integer.parseInt(fields.get(i + 1).getText()));
+                routine.addExercise(exercise);
+            }
+            gj.addRoutine(routine);
+            clearSelection();
         }
-        gj.addRoutine(routine);
-        clearSelection();
+    }
+
+    // EFFECTS: returns false if a non integer is in an integer field
+    private boolean testNonIntegers() {
+        try {
+            for (int i = 2; i <= numExercises * 2; i = i + 2) {
+                Integer.parseInt(fields.get(i).getText());
+            }
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
+
+    // EFFECTS: returns false if any fields are empty
+    private boolean testEmpty() {
+        for (JTextField field : this.fields) {
+            if (field.getText().equals("")) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // MODIFIES: this

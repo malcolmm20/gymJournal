@@ -53,6 +53,8 @@ public class MenuInterface extends Screen {
         addButtonsTwo(toolArea);
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates and adds buttons to area
     private void addButtonsTwo(JComponent toolArea) {
         JButton checkPersonalBests = new JButton("Check Personal Bests");
         checkPersonalBests.addActionListener(e -> checkPersonalBestsMethod());

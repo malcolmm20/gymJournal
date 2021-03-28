@@ -23,13 +23,16 @@ public class ViewWorkoutHistoryScreen extends Screen {
         makeJLabel();
     }
 
+    // MODIFIES: this
+    // EFFECTS: makes scroll pane for JList
     private void makeScrollPane() {
         JScrollPane listScroller = new JScrollPane(list);
         listScroller.setPreferredSize(new Dimension(WIDTH / 2, HEIGHT));
         add(listScroller, BorderLayout.WEST);
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: makes JLabel to display toString of selected workout
     private void makeJLabel() {
         text = new JLabel();
         text.setFont(new Font("", Font.PLAIN, 20));
@@ -39,6 +42,7 @@ public class ViewWorkoutHistoryScreen extends Screen {
         add(text, BorderLayout.CENTER);
     }
 
+    // EFFECTS: update JList of workouts
     public void updateList() {
         List<OpenWorkout> workoutArrayList = gj.getWorkoutHistory();
         OpenWorkout[] workoutArray = new OpenWorkout[workoutArrayList.size()];
@@ -49,6 +53,8 @@ public class ViewWorkoutHistoryScreen extends Screen {
         list.ensureIndexIsVisible(list.getModel().getSize());
     }
 
+    // MODIFIES: this
+    // EFFECTS: makes JList of workouts
     public void makeList() {
         List<OpenWorkout> workoutArrayList = gj.getWorkoutHistory();
         OpenWorkout[] workoutArray = new OpenWorkout[workoutArrayList.size()];
@@ -70,11 +76,11 @@ public class ViewWorkoutHistoryScreen extends Screen {
         list.setVisibleRowCount(-1);
     }
 
+    // EFFECTS: changes workout toString method so it has HTML line breaks
     private String paragraphText(String s) {
         String paragraph = "<html>".concat(s);
         paragraph.concat("</html>");
         paragraph = paragraph.replace(".", "<br/>");
-        System.out.println(paragraph);
         return paragraph;
     }
 
