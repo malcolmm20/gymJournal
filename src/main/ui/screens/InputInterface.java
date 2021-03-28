@@ -30,7 +30,7 @@ public abstract class InputInterface extends JPanel {
     // MODIFIES: this
     // EFFECTS: sets up graphics for JPanel
     protected void initializeGraphics() {
-        setLayout(new GridLayout(2, 1));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setMinimumSize(new Dimension(WIDTH, HEIGHT));
         add(northPanel);
         add(southPanel);

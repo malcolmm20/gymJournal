@@ -51,6 +51,7 @@ public class GymJournal implements Writable {
         return routines;
     }
 
+
     public List<OpenWorkout> getWorkoutHistory() {
         return workoutHistory;
     }

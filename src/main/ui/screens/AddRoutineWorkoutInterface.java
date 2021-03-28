@@ -28,8 +28,12 @@ public class AddRoutineWorkoutInterface extends InputInterface {
     // MODIFIES: this
     // EFFECTS: constructs form for user entry
     public void updateForm(Routine routine) {
+        northPanel.removeAll();
+        scrollPanel.removeAll();
+        northPanel.revalidate();
+        scrollPanel.revalidate();
         this.routine = routine;
-        scrollPanel.setLayout(new GridLayout(numRows() * 2, 2));
+        scrollPanel.setLayout(new GridLayout(numRows() * 2 + 1, 2));
         for (RoutineExercise routineExercise : routine.getExercises()) {
             for (int j = 0; j < routineExercise.getSets(); j++) {
                 exerciseEntries(j, routineExercise);
@@ -45,7 +49,9 @@ public class AddRoutineWorkoutInterface extends InputInterface {
     private void makeScrollPane() {
         JScrollPane listScroller = new JScrollPane(scrollPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        listScroller.setPreferredSize(new Dimension(WIDTH, HEIGHT - 150));
+        listScroller.setPreferredSize(new Dimension(WIDTH, HEIGHT - 50));
+        scrollPanel.setPreferredSize(new Dimension(scrollPanel.getWidth(), 1000));
+        listScroller.setPreferredSize(new Dimension(700, 800));
         northPanel.add(listScroller);
     }
 

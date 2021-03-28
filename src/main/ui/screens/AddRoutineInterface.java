@@ -15,12 +15,14 @@ public class AddRoutineInterface extends InputInterface {
     private JOptionPane popUp;
     private JButton enter;
     private JButton clear;
+    private JPanel scrollPanel;
     private ArrayList<JTextField> fields;
     private int numExercises;
 
     public AddRoutineInterface(GymJournalGUI gui, GymJournal gj) {
         super(gui, gj);
         popUp = new JOptionPane();
+        scrollPanel = new JPanel();
     }
 
     // MODIFIES: this
@@ -41,17 +43,33 @@ public class AddRoutineInterface extends InputInterface {
     // MODIFIES: this
     // EFFECTS: constructs form for user entry
     private void makeForm() {
-        northPanel.setLayout(new GridLayout((numExercises + 1) * 2, 2));
+        scrollPanel.removeAll();
+        northPanel.removeAll();
+        scrollPanel.revalidate();
+        northPanel.revalidate();
+        scrollPanel.setLayout(new GridLayout((numExercises + 1) * 2, 2));
         JLabel routineName = new JLabel("Enter your routine name:");
         JTextField routineNameField = new JTextField();
         fields.add(routineNameField);
-        northPanel.add(routineName);
-        northPanel.add(routineNameField);
+        scrollPanel.add(routineName);
+        scrollPanel.add(routineNameField);
         for (int i = 0; i < numExercises; i++) {
             exerciseEntries(i);
         }
         addButtons();
+        makeScrollPane();
         revalidate();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: makes scroll pane for JList
+    private void makeScrollPane() {
+        JScrollPane listScroller = new JScrollPane(scrollPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        listScroller.setPreferredSize(new Dimension(WIDTH, HEIGHT - 50));
+        scrollPanel.setPreferredSize(new Dimension(scrollPanel.getWidth(), 1000));
+        listScroller.setPreferredSize(new Dimension(700, 800));
+        northPanel.add(listScroller);
     }
 
     // MODIFIES: this
@@ -61,8 +79,8 @@ public class AddRoutineInterface extends InputInterface {
         clear = new JButton("Clear");
         enter.addActionListener(e -> processEntry());
         clear.addActionListener(e -> clearSelection());
-        northPanel.add(enter);
-        northPanel.add(clear);
+        scrollPanel.add(enter);
+        scrollPanel.add(clear);
     }
 
     // EFFECTS: clears text fields
@@ -119,12 +137,12 @@ public class AddRoutineInterface extends InputInterface {
         JLabel exerciseName = new JLabel("Exercise " + (i + 1) +  " name: ");
         JTextField exerciseNameField = new JTextField();
         fields.add(exerciseNameField);
-        northPanel.add(exerciseName);
-        northPanel.add(exerciseNameField);
+        scrollPanel.add(exerciseName);
+        scrollPanel.add(exerciseNameField);
         JLabel numSets = new JLabel("How many sets will be performed? ");
         JTextField numSetsField = new JTextField();
         fields.add(numSetsField);
-        northPanel.add(numSets);
-        northPanel.add(numSetsField);
+        scrollPanel.add(numSets);
+        scrollPanel.add(numSetsField);
     }
 }
