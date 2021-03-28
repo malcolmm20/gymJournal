@@ -74,15 +74,20 @@ public class MenuInterface extends Screen {
         JButton addRoutine = new JButton("Add Routine");
         addRoutine.addActionListener(e -> routineMethod());
         toolArea.add(addRoutine);
-        JButton addFreeWorkout = new JButton("Add Workout");
-        addFreeWorkout.addActionListener(e -> cl.show(gui,"workout"));
+        JButton addFreeWorkout = new JButton("Add Open Workout");
+        addFreeWorkout.addActionListener(e -> cl.show(gui,"free workout"));
         toolArea.add(addFreeWorkout);
-        JButton addRoutineWorkout = new JButton("Add Workout");
-        addRoutineWorkout.addActionListener(e -> cl.show(gui,"workout"));
+        JButton addRoutineWorkout = new JButton("Do a Workout Routine");
+        addRoutineWorkout.addActionListener(e -> selectRoutineMethod());
         toolArea.add(addRoutineWorkout);
         JButton checkOneRepMaxes = new JButton("Check One Rep Maxes");
         checkOneRepMaxes.addActionListener(e -> checkOneRepMaxesMethod());
         toolArea.add(checkOneRepMaxes);
+    }
+
+    private void selectRoutineMethod() {
+        ((SelectRoutine)gui.getScreenMap().get("select routine")).updateList();
+        cl.show(gui,"select routine");
     }
 
     // EFFECTS: shows routine screen, and pop up for input

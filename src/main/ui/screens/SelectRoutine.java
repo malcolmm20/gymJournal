@@ -1,11 +1,9 @@
 package ui.screens;
 
 import model.GymJournal;
-import model.OpenWorkout;
 import model.Routine;
 import ui.GymJournalGUI;
 import ui.screens.renderers.RoutineRenderer;
-import ui.screens.renderers.WorkoutRenderer;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -31,6 +29,26 @@ public class SelectRoutine extends Screen {
         add(listScroller, BorderLayout.WEST);
     }
 
+    @Override
+    public void createTools() {
+        JPanel toolArea = new JPanel();
+        toolArea.setLayout(new GridLayout(0,1));
+        toolArea.setSize(new Dimension(0, 0));
+        add(toolArea, BorderLayout.SOUTH);
+
+        JButton selectRoutine = new JButton("Select Routine");
+        selectRoutine.addActionListener(e -> selectRoutineMethod());
+        toolArea.add(selectRoutine);
+        JButton addRoutine = new JButton("Return to Menu");
+        addRoutine.addActionListener(e -> cl.show(gui,"menu"));
+        toolArea.add(addRoutine);
+    }
+
+    public void selectRoutineMethod() {
+        AddRoutineWorkoutInterface addRoutineWorkout = new AddRoutineWorkoutInterface((Routine)list.getSelectedValue(),
+                gui, gj);
+        cl.show(gui,"routine workout");
+    }
 
     private void makeJLabel() {
         text = new JLabel();
@@ -53,11 +71,11 @@ public class SelectRoutine extends Screen {
 
     public void makeList() {
         List<Routine> routineArrayList = gj.getRoutines();
-        Routine[] workoutArray = new Routine[routineArrayList.size()];
+        Routine[] routineArray = new Routine[routineArrayList.size()];
         for (int i = 0; i < routineArrayList.size(); i++) {
-            workoutArray[i] = routineArrayList.get(i);
+            routineArray[i] = routineArrayList.get(i);
         }
-        list = new JList(workoutArray);
+        list = new JList(routineArray);
         list.setCellRenderer(new RoutineRenderer());
         list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         list.addListSelectionListener(new ListSelectionListener() {

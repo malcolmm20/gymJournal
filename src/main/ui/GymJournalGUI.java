@@ -16,6 +16,7 @@ public class GymJournalGUI extends JPanel {
     private JPanel menu;
     private JPanel addFreeWorkout;
     private JPanel addRoutineWorkout;
+    private JPanel selectRoutine;
     private JPanel addRoutine;
     private JPanel checkPersonalBests;
     private JPanel checkOneRepMaxes;
@@ -40,7 +41,9 @@ public class GymJournalGUI extends JPanel {
     // EFFECTS: adds screens to hashmaps so they can be easily referenced
     private void addToHashMap() {
         screenMap.put("menu", menu);
-        screenMap.put("workout", addFreeWorkout);
+        screenMap.put("free workout", addFreeWorkout);
+        screenMap.put("routine workout", addRoutineWorkout);
+        screenMap.put("select routine", selectRoutine);
         screenMap.put("routine", addRoutine);
         screenMap.put("pb", checkPersonalBests);
         screenMap.put("orm", checkOneRepMaxes);
@@ -70,7 +73,9 @@ public class GymJournalGUI extends JPanel {
         add(menu, "menu");
         addFreeWorkout = new AddFreeWorkoutInterface(this, gj);
         add(addFreeWorkout, "free workout");
-        addRoutineWorkout = new AddFreeWorkoutInterface(this, gj);
+        selectRoutine = new SelectRoutine(this, gj);
+        add(selectRoutine, "select routine");
+        addRoutineWorkout = new AddRoutineInterface(this, gj);
         add(addRoutineWorkout, "routine workout");
         addRoutine = new AddRoutineInterface(this, gj);
         add(addRoutine, "routine");
