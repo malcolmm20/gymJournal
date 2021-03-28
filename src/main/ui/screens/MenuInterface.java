@@ -77,7 +77,7 @@ public class MenuInterface extends Screen {
         addRoutine.addActionListener(e -> routineMethod());
         toolArea.add(addRoutine);
         JButton addFreeWorkout = new JButton("Add Open Workout");
-        addFreeWorkout.addActionListener(e -> cl.show(gui,"free workout"));
+        addFreeWorkout.addActionListener(e -> freeWorkoutMethod());
         toolArea.add(addFreeWorkout);
         JButton addRoutineWorkout = new JButton("Do a Workout Routine");
         addRoutineWorkout.addActionListener(e -> selectRoutineMethod());
@@ -85,6 +85,11 @@ public class MenuInterface extends Screen {
         JButton checkOneRepMaxes = new JButton("Check One Rep Maxes");
         checkOneRepMaxes.addActionListener(e -> checkOneRepMaxesMethod());
         toolArea.add(checkOneRepMaxes);
+    }
+
+    private void freeWorkoutMethod() {
+        cl.show(gui,"free workout");
+        ((AddFreeWorkoutInterface)gui.getScreenMap().get("free workout")).showPopUp();
     }
 
     private void selectRoutineMethod() {
@@ -100,7 +105,7 @@ public class MenuInterface extends Screen {
 
     // EFFECTS: updates history list, shows history screen
     private void viewHistoryMethod() {
-        ((SelectRoutine)gui.getScreenMap().get("history")).updateList();
+        ((ViewWorkoutHistoryScreen)gui.getScreenMap().get("history")).updateList();
         cl.show(gui,"history");
     }
 

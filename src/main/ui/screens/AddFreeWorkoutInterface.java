@@ -20,7 +20,6 @@ public class AddFreeWorkoutInterface extends InputInterface {
     private JOptionPane popUp;
     private ArrayList<JTextField> fields;
     private int numExercises;
-    private Routine routine;
 
     public AddFreeWorkoutInterface(GymJournalGUI gui, GymJournal gj) {
         super(gui, gj);

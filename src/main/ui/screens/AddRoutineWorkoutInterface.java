@@ -93,7 +93,7 @@ public class AddRoutineWorkoutInterface extends InputInterface {
             int i = 0;
             for (RoutineExercise routineExercise : routine.getExercises()) {
                 WorkoutExercise exercise = new WorkoutExercise(routineExercise.getName());
-                for (int j = 0; i < routine.getExercises().get(i).getSets(); j++) {
+                for (int j = 0; j < routineExercise.getSets(); j++) {
                     WorkoutSet set = new WorkoutSet(Integer.parseInt(fields.get(i).getText()),
                             Integer.parseInt(fields.get(i + 1).getText()));
                     exercise.addSet(set);
@@ -101,6 +101,8 @@ public class AddRoutineWorkoutInterface extends InputInterface {
                 }
                 workout.addExercise(exercise);
             }
+            gj.addWorkout(workout);
+            clearSelection();
         }
     }
 
@@ -137,7 +139,7 @@ public class AddRoutineWorkoutInterface extends InputInterface {
         scrollPanel.add(howManyRepsField);
         JLabel howMuchWeight = new JLabel("What weight used for set " + (j + 1) + " of " + exercise.getName());
         JTextField howMuchWeightField = new JTextField();
-        fields.add(howManyRepsField);
+        fields.add(howMuchWeightField);
         scrollPanel.add(howMuchWeight);
         scrollPanel.add(howMuchWeightField);
     }
