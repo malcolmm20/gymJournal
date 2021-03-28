@@ -12,7 +12,7 @@ public class GymJournal implements Writable {
     private final List<OpenWorkout> workoutHistory;
     private final HashMap<String, WorkoutSet> personalBests;
     private final HashMap<String, Double> oneRepMaxes;
-    private final HashMap<String, Routine> routineHashMap;
+    private HashMap<String, Routine> routineHashMap;
 
     // MODIFIES: this
     // EFFECTS: initializes hashmaps and arraylist
@@ -41,6 +41,14 @@ public class GymJournal implements Writable {
         }
 
         return jsonArray;
+    }
+
+    public ArrayList<Routine> getRoutines() {
+        ArrayList<Routine> routines = new ArrayList<>();
+        for (Routine routine : routineHashMap.values()) {
+            routines.add(routine);
+        }
+        return routines;
     }
 
     public List<OpenWorkout> getWorkoutHistory() {

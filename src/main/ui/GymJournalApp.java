@@ -6,7 +6,6 @@ import persistence.JsonWriter;
 import persistence.Writable;
 
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;

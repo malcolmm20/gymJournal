@@ -3,14 +3,12 @@ package persistence;
 import model.GymJournal;
 import model.OpenWorkout;
 import model.Routine;
-import model.WorkoutExercise;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

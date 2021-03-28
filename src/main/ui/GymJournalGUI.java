@@ -14,7 +14,8 @@ public class GymJournalGUI extends JPanel {
     private HashMap<String, JPanel> screenMap;
     private JFrame display;
     private JPanel menu;
-    private JPanel addWorkout;
+    private JPanel addFreeWorkout;
+    private JPanel addRoutineWorkout;
     private JPanel addRoutine;
     private JPanel checkPersonalBests;
     private JPanel checkOneRepMaxes;
@@ -39,7 +40,7 @@ public class GymJournalGUI extends JPanel {
     // EFFECTS: adds screens to hashmaps so they can be easily referenced
     private void addToHashMap() {
         screenMap.put("menu", menu);
-        screenMap.put("workout", addWorkout);
+        screenMap.put("workout", addFreeWorkout);
         screenMap.put("routine", addRoutine);
         screenMap.put("pb", checkPersonalBests);
         screenMap.put("orm", checkOneRepMaxes);
@@ -67,15 +68,17 @@ public class GymJournalGUI extends JPanel {
     private void initializeScreens() {
         menu = new MenuInterface(this, gj);
         add(menu, "menu");
-        addWorkout = new AddWorkoutInterface(this, gj);
-        add(addWorkout, "workout");
+        addFreeWorkout = new AddFreeWorkoutInterface(this, gj);
+        add(addFreeWorkout, "free workout");
+        addRoutineWorkout = new AddFreeWorkoutInterface(this, gj);
+        add(addRoutineWorkout, "routine workout");
         addRoutine = new AddRoutineInterface(this, gj);
         add(addRoutine, "routine");
         checkPersonalBests = new CheckPersonalBestsScreen(this, gj);
         add(checkPersonalBests, "pb");
         checkOneRepMaxes = new CheckOneRepMaxesScreen(this, gj);
         add(checkOneRepMaxes, "orm");
-        viewWorkoutHistory = new ViewWorkoutHistoryScreen(this, gj);
+        viewWorkoutHistory = new SelectRoutine(this, gj);
         add(viewWorkoutHistory, "history");
     }
 

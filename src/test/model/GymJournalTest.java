@@ -58,6 +58,15 @@ class GymJournalTest {
     }
 
     @Test
+    void testGetRoutines() {
+        ArrayList<Routine> routines = new ArrayList<>();
+        routines.add(routineB);
+        routines.add(routineC);
+        routines.add(routineA);
+        assertEquals(routines, journalA.getRoutines());
+    }
+
+    @Test
     void testToJson() {
         JSONObject jsonA = new JSONObject();
         JSONObject jsonB = new JSONObject();

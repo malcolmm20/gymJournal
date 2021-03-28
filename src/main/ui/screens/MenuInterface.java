@@ -49,21 +49,11 @@ public class MenuInterface extends Screen {
         toolArea.setLayout(new GridLayout(0,1));
         toolArea.setSize(new Dimension(0, 0));
         add(toolArea, BorderLayout.SOUTH);
-        addButtons(toolArea);
+        addButtonsOne(toolArea);
+        addButtonsTwo(toolArea);
     }
 
-    // MODIFIES: toolArea
-    // EFFECTS: creates and adds buttons to area
-    private void addButtons(JComponent toolArea) {
-        JButton addRoutine = new JButton("Add Routine");
-        addRoutine.addActionListener(e -> routineMethod());
-        toolArea.add(addRoutine);
-        JButton addWorkout = new JButton("Add Workout");
-        addWorkout.addActionListener(e -> cl.show(gui,"workout"));
-        toolArea.add(addWorkout);
-        JButton checkOneRepMaxes = new JButton("Check One Rep Maxes");
-        checkOneRepMaxes.addActionListener(e -> checkOneRepMaxesMethod());
-        toolArea.add(checkOneRepMaxes);
+    private void addButtonsTwo(JComponent toolArea) {
         JButton checkPersonalBests = new JButton("Check Personal Bests");
         checkPersonalBests.addActionListener(e -> checkPersonalBestsMethod());
         toolArea.add(checkPersonalBests);
@@ -78,6 +68,23 @@ public class MenuInterface extends Screen {
         toolArea.add(loadJournal);
     }
 
+    // MODIFIES: toolArea
+    // EFFECTS: creates and adds buttons to area
+    private void addButtonsOne(JComponent toolArea) {
+        JButton addRoutine = new JButton("Add Routine");
+        addRoutine.addActionListener(e -> routineMethod());
+        toolArea.add(addRoutine);
+        JButton addFreeWorkout = new JButton("Add Workout");
+        addFreeWorkout.addActionListener(e -> cl.show(gui,"workout"));
+        toolArea.add(addFreeWorkout);
+        JButton addRoutineWorkout = new JButton("Add Workout");
+        addRoutineWorkout.addActionListener(e -> cl.show(gui,"workout"));
+        toolArea.add(addRoutineWorkout);
+        JButton checkOneRepMaxes = new JButton("Check One Rep Maxes");
+        checkOneRepMaxes.addActionListener(e -> checkOneRepMaxesMethod());
+        toolArea.add(checkOneRepMaxes);
+    }
+
     // EFFECTS: shows routine screen, and pop up for input
     private void routineMethod() {
         cl.show(gui,"routine");
@@ -86,7 +93,7 @@ public class MenuInterface extends Screen {
 
     // EFFECTS: updates history list, shows history screen
     private void viewHistoryMethod() {
-        ((ViewWorkoutHistoryScreen)gui.getScreenMap().get("history")).updateList();
+        ((SelectRoutine)gui.getScreenMap().get("history")).updateList();
         cl.show(gui,"history");
     }
 
