@@ -57,6 +57,7 @@ class GymJournalTest {
         assertEquals(list, journalA.getWorkoutHistory());
     }
 
+
     @Test
     void testGetRoutines() {
         ArrayList<Routine> routines = new ArrayList<>();
@@ -320,6 +321,16 @@ class GymJournalTest {
                         "bench press: 1 reps, 200 lbs\n" +
                         "barbell back squat: 8 reps, 150 lbs\n"
                 , journalA.displayPersonalBests());
+    }
+
+    @Test
+    void testGetOneRepMaxes() {
+        assertEquals(journalA.getOneRepMaxes(), journalB.getOneRepMaxes());
+    }
+
+    @Test
+    void testPersonalBests() {
+        assertEquals(journalA.getPersonalBests(), journalB.getPersonalBests());
     }
 
     private void add() {

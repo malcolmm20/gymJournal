@@ -45,6 +45,10 @@ public class AddFreeWorkoutInterface extends InputInterface {
     // MODIFIES: this
     // EFFECTS: constructs form for user entry
     private void makeForm() {
+        int s = fields.size();
+        for (int i = 0; i < s; i++) {
+            fields.remove(i);
+        }
         scrollPanel.removeAll();
         northPanel.removeAll();
         scrollPanel.revalidate();

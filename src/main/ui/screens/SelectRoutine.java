@@ -23,12 +23,16 @@ public class SelectRoutine extends Screen {
         makeJLabel();
     }
 
+    // MODIFIES: this
+    // EFFECTS: makes scroll pane to view list in
     private void makeScrollPane() {
         JScrollPane listScroller = new JScrollPane(list);
         listScroller.setPreferredSize(new Dimension(WIDTH / 2, HEIGHT));
         add(listScroller, BorderLayout.WEST);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds buttons with button listeners
     @Override
     public void createTools() {
         JPanel toolArea = new JPanel();
@@ -37,19 +41,22 @@ public class SelectRoutine extends Screen {
         add(toolArea, BorderLayout.SOUTH);
 
         JButton selectRoutine = new JButton("Select Routine");
-        selectRoutine.addActionListener(e -> selectRoutineMethod());
+        selectRoutine.addActionListener(e -> selectRoutineHelper());
         toolArea.add(selectRoutine);
         JButton addRoutine = new JButton("Return to Menu");
         addRoutine.addActionListener(e -> cl.show(gui,"menu"));
         toolArea.add(addRoutine);
     }
 
-    public void selectRoutineMethod() {
+    // EFFECTS: displays add routine workout screen
+    public void selectRoutineHelper() {
         ((AddRoutineWorkoutInterface)gui.getScreenMap().get("routine workout")).updateForm(
                 (Routine)list.getSelectedValue());
         cl.show(gui,"routine workout");
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates JLabel to show selected routine toString in
     private void makeJLabel() {
         text = new JLabel();
         text.setFont(new Font("", Font.PLAIN, 20));
@@ -59,6 +66,8 @@ public class SelectRoutine extends Screen {
         add(text, BorderLayout.CENTER);
     }
 
+    // MODIFIES: this
+    // EFFECTS: updates list when select routines is visible
     public void updateList() {
         List<Routine> routineArrayList = gj.getRoutines();
         Routine[] routineArray = new Routine[routineArrayList.size()];
@@ -69,6 +78,8 @@ public class SelectRoutine extends Screen {
         list.ensureIndexIsVisible(list.getModel().getSize());
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates JList of routines
     public void makeList() {
         List<Routine> routineArrayList = gj.getRoutines();
         Routine[] routineArray = new Routine[routineArrayList.size()];
@@ -90,6 +101,7 @@ public class SelectRoutine extends Screen {
         list.setVisibleRowCount(-1);
     }
 
+    // EFFECTS: changes routine to string to html so line breaks are included
     private String paragraphText(String s) {
         String paragraph = "<html>".concat(s);
         paragraph.concat("</html>");

@@ -57,10 +57,10 @@ public class MenuInterface extends Screen {
     // EFFECTS: creates and adds buttons to area
     private void addButtonsTwo(JComponent toolArea) {
         JButton checkPersonalBests = new JButton("Check Personal Bests");
-        checkPersonalBests.addActionListener(e -> checkPersonalBestsMethod());
+        checkPersonalBests.addActionListener(e -> checkPersonalBestsHelper());
         toolArea.add(checkPersonalBests);
         JButton viewWorkoutHistory = new JButton("View Workout History");
-        viewWorkoutHistory.addActionListener(e -> viewHistoryMethod());
+        viewWorkoutHistory.addActionListener(e -> viewHistoryHelper());
         toolArea.add(viewWorkoutHistory);
         JButton saveJournal = new JButton("Save Gym Journal");
         saveJournal.addActionListener(e -> saveGymJournal());
@@ -74,49 +74,49 @@ public class MenuInterface extends Screen {
     // EFFECTS: creates and adds buttons to area
     private void addButtonsOne(JComponent toolArea) {
         JButton addRoutine = new JButton("Add Routine");
-        addRoutine.addActionListener(e -> routineMethod());
+        addRoutine.addActionListener(e -> routineHelper());
         toolArea.add(addRoutine);
         JButton addFreeWorkout = new JButton("Add Open Workout");
-        addFreeWorkout.addActionListener(e -> freeWorkoutMethod());
+        addFreeWorkout.addActionListener(e -> freeWorkoutHelper());
         toolArea.add(addFreeWorkout);
         JButton addRoutineWorkout = new JButton("Do a Workout Routine");
-        addRoutineWorkout.addActionListener(e -> selectRoutineMethod());
+        addRoutineWorkout.addActionListener(e -> selectRoutineHelper());
         toolArea.add(addRoutineWorkout);
         JButton checkOneRepMaxes = new JButton("Check One Rep Maxes");
-        checkOneRepMaxes.addActionListener(e -> checkOneRepMaxesMethod());
+        checkOneRepMaxes.addActionListener(e -> checkOneRepMaxesHelper());
         toolArea.add(checkOneRepMaxes);
     }
 
-    private void freeWorkoutMethod() {
+    private void freeWorkoutHelper() {
         cl.show(gui,"free workout");
         ((AddFreeWorkoutInterface)gui.getScreenMap().get("free workout")).showPopUp();
     }
 
-    private void selectRoutineMethod() {
+    private void selectRoutineHelper() {
         ((SelectRoutine)gui.getScreenMap().get("select routine")).updateList();
         cl.show(gui,"select routine");
     }
 
     // EFFECTS: shows routine screen, and pop up for input
-    private void routineMethod() {
+    private void routineHelper() {
         cl.show(gui,"routine");
         ((AddRoutineInterface)gui.getScreenMap().get("routine")).showPopUp();
     }
 
     // EFFECTS: updates history list, shows history screen
-    private void viewHistoryMethod() {
+    private void viewHistoryHelper() {
         ((ViewWorkoutHistoryScreen)gui.getScreenMap().get("history")).updateList();
         cl.show(gui,"history");
     }
 
     // EFFECTS: updates personal bests list, shows personal bests screen
-    private void checkPersonalBestsMethod() {
+    private void checkPersonalBestsHelper() {
         ((CheckPersonalBestsScreen)gui.getScreenMap().get("pb")).updateList();
         cl.show(gui,"pb");
     }
 
     // EFFECTS: updates one rep max list, shows one rep max screen
-    private void checkOneRepMaxesMethod() {
+    private void checkOneRepMaxesHelper() {
         ((CheckOneRepMaxesScreen)gui.getScreenMap().get("orm")).updateList();
         cl.show(gui,"orm");
     }

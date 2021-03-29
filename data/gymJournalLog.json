@@ -1,16 +1,16 @@
 {
     "workout history": [{
-        "date": "2021-03-26",
+        "date": "2021-03-28",
         "exercises": [
             {
                 "sets": [
                     {
-                        "reps": 10,
-                        "weight": 100
+                        "reps": 11,
+                        "weight": 111
                     },
                     {
-                        "reps": 5,
-                        "weight": 185
+                        "reps": 11,
+                        "weight": 111
                     }
                 ],
                 "exercise name": "bench press"
@@ -18,33 +18,34 @@
             {
                 "sets": [
                     {
-                        "reps": 10,
-                        "weight": 70
+                        "reps": 11,
+                        "weight": 113
                     },
                     {
-                        "reps": 10,
-                        "weight": 80
+                        "reps": 12,
+                        "weight": 123
                     }
                 ],
                 "exercise name": "tricep pushdown"
+            },
+            {
+                "sets": [
+                    {
+                        "reps": 12,
+                        "weight": 322
+                    },
+                    {
+                        "reps": 23,
+                        "weight": 12
+                    },
+                    {
+                        "reps": 1,
+                        "weight": 1111
+                    }
+                ],
+                "exercise name": "incline bench press"
             }
         ]
     }],
-    "routines": [{
-        "exercises": [
-            {
-                "sets": 2,
-                "exercise name": "bench press"
-            },
-            {
-                "sets": 2,
-                "exercise name": "tricep pushdown"
-            },
-            {
-                "sets": 3,
-                "exercise name": "incline bench press"
-            }
-        ],
-        "name": "chest day"
-    }]
+    "routines": []
 }

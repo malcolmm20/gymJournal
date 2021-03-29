@@ -62,7 +62,7 @@ public class CheckPersonalBestsScreen extends Screen {
         int i = 0;
         for (Map.Entry<String, WorkoutSet> entry : pbMap.entrySet()) {
             personalBestArray[i] = entry.getKey() + ": " + entry.getValue().getReps() + " reps, "
-                    + entry.getValue().getReps() + " lbs";
+                    + entry.getValue().getWeight() + " lbs";
             i++;
         }
         list.setListData(personalBestArray);

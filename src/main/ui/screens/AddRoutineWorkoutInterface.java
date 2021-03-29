@@ -16,8 +16,6 @@ public class AddRoutineWorkoutInterface extends InputInterface {
     private JButton clear;
     private JPanel scrollPanel;
 
-    // todo add exercises individually
-
     public AddRoutineWorkoutInterface(GymJournalGUI gui, GymJournal gj) {
         super(gui, gj);
         fields = new ArrayList<>();
@@ -28,6 +26,10 @@ public class AddRoutineWorkoutInterface extends InputInterface {
     // MODIFIES: this
     // EFFECTS: constructs form for user entry
     public void updateForm(Routine routine) {
+        int s = fields.size();
+        for (int i = 0; i < s; i++) {
+            fields.remove(i);
+        }
         northPanel.removeAll();
         scrollPanel.removeAll();
         northPanel.revalidate();
@@ -55,6 +57,7 @@ public class AddRoutineWorkoutInterface extends InputInterface {
         northPanel.add(listScroller);
     }
 
+    // EFFECTS: calculates the number of rows required in GridLayout
     private int numRows() {
         int numRows = 0;
         for (RoutineExercise routineExercise : routine.getExercises()) {
