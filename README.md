@@ -36,3 +36,12 @@ my current GymJournal.
 I used the map interface in the GymJournal class for the GymJournals routines
 because order does not matter for routines, and I referenced each routine by its
 name, so it was easy to make key value pairs.
+
+## Phase 4: Task 3
+After viewing the UML diagram I realized that my GymJournalGUI class doesn't need 
+to have individual screen fields, because when I instantiate the screens, I add
+them to the screen hashMap, and reference them using the hashMap throughout the
+project. Otherwise, I am happy with the class hierarchies and associations
+I implemented. The only project feature I would change would be some options
+to make inputting workout values less tedious, although if it were an app on
+a touchscreen, I think it would be far less tedious.
