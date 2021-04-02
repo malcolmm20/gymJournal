@@ -1,6 +1,6 @@
 # Gym Journal
 
-## A openWorkout recording app to help you workoutExercise intelligently.
+## A openWorkout recording app to help you workout intelligently.
 
 This application is designed to make tracking your workouts more efficient.  
 
@@ -31,3 +31,8 @@ done.
 - As a user, I want to be able to save the contents in my GymJournal to a file.
 - As a user, I want to be able to load the contents of my saved GymJournal into 
 my current GymJournal. 
+
+## Phase 4: Task 2
+I used the map interface in the GymJournal class for the GymJournals routines
+because order does not matter for routines, and I referenced each routine by its
+name, so it was easy to make key value pairs.

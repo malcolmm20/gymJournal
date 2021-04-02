@@ -1,51 +1,50 @@
 {
     "workout history": [{
-        "date": "2021-03-28",
+        "date": "2021-04-01",
         "exercises": [
             {
                 "sets": [
                     {
-                        "reps": 11,
-                        "weight": 111
+                        "reps": 10,
+                        "weight": 135
                     },
                     {
-                        "reps": 11,
-                        "weight": 111
+                        "reps": 10,
+                        "weight": 135
                     }
                 ],
-                "exercise name": "bench press"
+                "exercise name": "squats"
             },
             {
                 "sets": [
                     {
-                        "reps": 11,
-                        "weight": 113
+                        "reps": 10,
+                        "weight": 100
                     },
                     {
-                        "reps": 12,
-                        "weight": 123
+                        "reps": 10,
+                        "weight": 110
+                    },
+                    {
+                        "reps": 10,
+                        "weight": 110
                     }
                 ],
-                "exercise name": "tricep pushdown"
-            },
-            {
-                "sets": [
-                    {
-                        "reps": 12,
-                        "weight": 322
-                    },
-                    {
-                        "reps": 23,
-                        "weight": 12
-                    },
-                    {
-                        "reps": 1,
-                        "weight": 1111
-                    }
-                ],
-                "exercise name": "incline bench press"
+                "exercise name": "leg extension"
             }
         ]
     }],
-    "routines": []
+    "routines": [{
+        "exercises": [
+            {
+                "sets": 2,
+                "exercise name": "squats"
+            },
+            {
+                "sets": 3,
+                "exercise name": "leg extension"
+            }
+        ],
+        "name": "leg day"
+    }]
 }

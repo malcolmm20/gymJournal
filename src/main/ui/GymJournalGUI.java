@@ -21,7 +21,6 @@ public class GymJournalGUI extends JPanel {
     private JPanel checkPersonalBests;
     private JPanel checkOneRepMaxes;
     private JPanel viewWorkoutHistory;
-    private JPanel activeScreen;
     private GymJournal gj;
 
     public GymJournalGUI() {
@@ -32,7 +31,6 @@ public class GymJournalGUI extends JPanel {
         display.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new CardLayout());
         initializeScreens();
-        activeScreen = menu;
         initializeGraphics();
         addToHashMap();
     }
