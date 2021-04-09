@@ -26,10 +26,7 @@ public class AddRoutineWorkoutInterface extends InputInterface {
     // MODIFIES: this
     // EFFECTS: constructs form for user entry
     public void updateForm(Routine routine) {
-        int s = fields.size();
-        for (int i = 0; i < s; i++) {
-            fields.remove(i);
-        }
+        fields.clear();
         northPanel.removeAll();
         scrollPanel.removeAll();
         northPanel.revalidate();
