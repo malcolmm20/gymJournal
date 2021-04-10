@@ -31,7 +31,7 @@ public class AddFreeWorkoutInterface extends InputInterface {
     // EFFECTS: shows pop up that prompts user to enter number of exercises
     public void showPopUp() {
         fields = new ArrayList<>();
-        String input = popUp.showInputDialog("Enter how many exercises your routine will include: ");
+        String input = popUp.showInputDialog("Enter how many exercises your workout will include: ");
         try {
             numExercises = Integer.parseInt(input);
             makeForm();
